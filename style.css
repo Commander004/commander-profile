@@ -1,0 +1,1700 @@
+/* =========================================================
+   COMMANDER04 PROFILE
+   DARK / SAD / CINEMATIC
+========================================================= */
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --accent-color: #8b5cf6;
+
+    --accent-light: #b794ff;
+
+    --background-color: #050507;
+
+    --card-color: #101016;
+
+    --text-color: #ffffff;
+
+    --muted-color: #858590;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    background:
+        var(--background-color);
+
+    color:
+        var(--text-color);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    overflow-x: hidden;
+
+}
+
+
+/* =========================================================
+   BACKGROUND VIDEO CONTAINER
+========================================================= */
+
+.background-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    z-index: -10;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   BACKGROUND VIDEO
+========================================================= */
+
+.background-video {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    /*
+        ONLY EFFECT:
+
+        Very small blur.
+    */
+
+    filter:
+        blur(2px);
+
+    /*
+        Prevent blurred edges
+        from becoming visible.
+    */
+
+    transform:
+        scale(1.02);
+
+    /*
+        No animations.
+        No brightness.
+        No contrast.
+        No saturation.
+        No color filters.
+    */
+
+}
+
+
+/* =========================================================
+   ENTER SCREEN
+========================================================= */
+
+.enter-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(5, 5, 7, 0.96);
+
+    transition:
+        opacity 0.9s ease,
+        visibility 0.9s ease;
+
+}
+
+
+.enter-screen.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+.enter-content {
+
+    text-align: center;
+
+    animation:
+        enterAppear 1.4s ease;
+
+}
+
+
+.enter-name {
+
+    margin-bottom: 28px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        clamp(
+            42px,
+            8vw,
+            90px
+        );
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        8px;
+
+    text-shadow:
+        0 0 20px
+        rgba(
+            139,
+            92,
+            246,
+            0.25
+        );
+
+}
+
+
+.enter-button {
+
+    padding:
+        13px 28px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.2
+        );
+
+    border-radius:
+        6px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+    color:
+        #ffffff;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        3px;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+
+}
+
+
+.enter-button:hover {
+
+    background:
+        rgba(
+            139,
+            92,
+            246,
+            0.15
+        );
+
+    border-color:
+        var(--accent-color);
+
+    box-shadow:
+        0 0 25px
+        rgba(
+            139,
+            92,
+            246,
+            0.2
+        );
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.enter-button:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+/* =========================================================
+   MAIN SITE
+========================================================= */
+
+.main-site {
+
+    min-height:
+        100vh;
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+
+}
+
+
+.main-site.visible {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+}
+
+
+/* =========================================================
+   PROFILE SECTION
+========================================================= */
+
+.profile {
+
+    min-height:
+        100vh;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        80px 20px;
+
+}
+
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.profile-card {
+
+    width:
+        min(
+            440px,
+            92vw
+        );
+
+    padding:
+        42px 34px;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                18,
+                18,
+                23,
+                0.82
+            ),
+            rgba(
+                5,
+                5,
+                8,
+                0.74
+            )
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.09
+        );
+
+    border-radius:
+        18px;
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 30px 100px
+        rgba(
+            0,
+            0,
+            0,
+            0.65
+        ),
+        0 0 50px
+        rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
+
+    animation:
+        cardAppear 1s ease;
+
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.avatar-container {
+
+    width:
+        120px;
+
+    height:
+        120px;
+
+    margin:
+        0 auto 22px;
+
+    padding:
+        3px;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent-color),
+            transparent 65%
+        );
+
+    box-shadow:
+        0 0 35px
+        rgba(
+            139,
+            92,
+            246,
+            0.18
+        );
+
+}
+
+
+.profile-avatar {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    border-radius:
+        50%;
+
+    border:
+        3px solid
+        #08080b;
+
+    background:
+        #101016;
+
+}
+
+
+/* =========================================================
+   NAME
+========================================================= */
+
+.profile-name {
+
+    margin-top:
+        5px;
+
+    font-size:
+        30px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        -0.5px;
+
+    color:
+        #ffffff;
+
+}
+
+
+/* =========================================================
+   USERNAME
+========================================================= */
+
+.profile-username {
+
+    margin-top:
+        5px;
+
+    color:
+        var(--muted-color);
+
+    font-size:
+        13px;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+/* =========================================================
+   BIO
+========================================================= */
+
+.profile-bio {
+
+    max-width:
+        330px;
+
+    margin:
+        18px auto 0;
+
+    color:
+        #c0c0c8;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+.profile-location {
+
+    margin-top:
+        13px;
+
+    color:
+        var(--muted-color);
+
+    font-size:
+        12px;
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.profile-status {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        7px;
+
+    margin-top:
+        12px;
+
+    color:
+        #8f8f9a;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        0.5px;
+
+}
+
+
+.status-dot {
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--accent-color);
+
+    box-shadow:
+        0 0 10px
+        rgba(
+            139,
+            92,
+            246,
+            0.8
+        );
+
+    animation:
+        statusPulse 2s infinite;
+
+}
+
+
+/* =========================================================
+   SOCIAL LINKS
+========================================================= */
+
+.social-links {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px;
+
+    margin-top:
+        26px;
+
+}
+
+
+.social-links a {
+
+    padding:
+        8px 12px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        7px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+    color:
+        #a9a9b2;
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.social-links a:hover {
+
+    color:
+        #ffffff;
+
+    border-color:
+        rgba(
+            139,
+            92,
+            246,
+            0.55
+        );
+
+    background:
+        rgba(
+            139,
+            92,
+            246,
+            0.08
+        );
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   MUSIC PLAYER
+========================================================= */
+
+.music-player {
+
+    margin-top:
+        28px;
+
+    padding:
+        16px;
+
+    text-align:
+        left;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.22
+        );
+
+}
+
+
+.music-info {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        3px;
+
+}
+
+
+.music-title {
+
+    color:
+        #ffffff;
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+}
+
+
+.music-artist {
+
+    color:
+        #777780;
+
+    font-size:
+        10px;
+
+}
+
+
+.music-controls {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        13px;
+
+}
+
+
+.music-button {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(
+            139,
+            92,
+            246,
+            0.1
+        );
+
+    color:
+        #ffffff;
+
+    font-size:
+        10px;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.music-button:hover {
+
+    background:
+        rgba(
+            139,
+            92,
+            246,
+            0.25
+        );
+
+    border-color:
+        var(--accent-color);
+
+    box-shadow:
+        0 0 15px
+        rgba(
+            139,
+            92,
+            246,
+            0.2
+        );
+
+}
+
+
+.music-progress {
+
+    flex:
+        1;
+
+    height:
+        3px;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+}
+
+
+.music-progress-bar {
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    background:
+        var(--accent-color);
+
+    box-shadow:
+        0 0 10px
+        rgba(
+            139,
+            92,
+            246,
+            0.7
+        );
+
+    transition:
+        width 0.1s linear;
+
+}
+
+
+/* =========================================================
+   NEXT PAGE
+========================================================= */
+
+.next-page {
+
+    width:
+        100%;
+
+    margin-top:
+        25px;
+
+    padding:
+        13px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        8px;
+
+    background:
+        transparent;
+
+    color:
+        #9d9da7;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2px;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.25s ease;
+
+}
+
+
+.next-page span {
+
+    margin-left:
+        8px;
+
+    color:
+        var(--accent-color);
+
+    transition:
+        transform 0.25s ease;
+
+}
+
+
+.next-page:hover {
+
+    color:
+        #ffffff;
+
+    border-color:
+        rgba(
+            139,
+            92,
+            246,
+            0.5
+        );
+
+    background:
+        rgba(
+            139,
+            92,
+            246,
+            0.06
+        );
+
+}
+
+
+.next-page:hover span {
+
+    display:
+        inline-block;
+
+    transform:
+        translateX(5px);
+
+}
+
+
+/* =========================================================
+   SECOND PAGE
+========================================================= */
+
+.page-two {
+
+    min-height:
+        100vh;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        80px 20px;
+
+    background:
+        rgba(
+            5,
+            5,
+            7,
+            0.35
+        );
+
+}
+
+
+.page-content {
+
+    width:
+        min(
+            850px,
+            92vw
+        );
+
+    padding:
+        45px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        15px;
+
+    background:
+        rgba(
+            10,
+            10,
+            14,
+            0.7
+        );
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+}
+
+
+.page-label {
+
+    color:
+        var(--accent-color);
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        3px;
+
+    margin-bottom:
+        12px;
+
+}
+
+
+.page-content h2 {
+
+    font-size:
+        clamp(
+            35px,
+            6vw,
+            60px
+        );
+
+    letter-spacing:
+        -2px;
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.about-text {
+
+    max-width:
+        700px;
+
+    color:
+        #a4a4ad;
+
+    line-height:
+        1.8;
+
+    font-size:
+        15px;
+
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.projects {
+
+    margin-top:
+        45px;
+
+}
+
+
+.projects h3 {
+
+    margin-bottom:
+        18px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.project-list {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:
+        12px;
+
+}
+
+
+.project-item {
+
+    padding:
+        18px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    border-radius:
+        9px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.025
+        );
+
+}
+
+
+.project-item h4 {
+
+    color:
+        #ffffff;
+
+    font-size:
+        14px;
+
+    margin-bottom:
+        6px;
+
+}
+
+
+.project-item p {
+
+    color:
+        #777780;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   BACK PAGE
+========================================================= */
+
+.back-page {
+
+    margin-top:
+        35px;
+
+    padding:
+        11px 18px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius:
+        7px;
+
+    background:
+        transparent;
+
+    color:
+        #9999a2;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        1px;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.back-page:hover {
+
+    color:
+        #ffffff;
+
+    border-color:
+        var(--accent-color);
+
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes enterAppear {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes cardAppear {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(25px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        opacity:
+            0.45;
+
+        transform:
+            scale(0.7);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .background-video {
+
+        /*
+            Same video,
+            slightly smaller blur
+            on mobile.
+        */
+
+        filter:
+            blur(1.5px);
+
+        transform:
+            scale(1.02);
+
+    }
+
+
+    .profile {
+
+        padding:
+            35px 15px;
+
+    }
+
+
+    .profile-card {
+
+        width:
+            min(
+                440px,
+                94vw
+            );
+
+        padding:
+            32px 20px;
+
+        border-radius:
+            15px;
+
+    }
+
+
+    .avatar-container {
+
+        width:
+            105px;
+
+        height:
+            105px;
+
+    }
+
+
+    .profile-name {
+
+        font-size:
+            26px;
+
+    }
+
+
+    .profile-bio {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .social-links {
+
+        gap:
+            6px;
+
+    }
+
+
+    .social-links a {
+
+        padding:
+            7px 9px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    .page-content {
+
+        width:
+            94vw;
+
+        padding:
+            30px 22px;
+
+    }
+
+
+    .project-list {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .background-video {
+
+        filter:
+            blur(1.5px);
+
+        transform:
+            scale(1.025);
+
+    }
+
+
+    .enter-name {
+
+        font-size:
+            clamp(
+                36px,
+                12vw,
+                60px
+            );
+
+        letter-spacing:
+            5px;
+
+    }
+
+
+    .enter-button {
+
+        padding:
+            12px 22px;
+
+        font-size:
+            10px;
+
+        letter-spacing:
+            2px;
+
+    }
+
+
+    .profile {
+
+        padding:
+            25px 12px;
+
+    }
+
+
+    .profile-card {
+
+        padding:
+            28px 17px;
+
+    }
+
+
+    .music-player {
+
+        padding:
+            14px;
+
+    }
+
+
+    .page-two {
+
+        padding:
+            45px 12px;
+
+    }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+
+    .enter-button:hover,
+    .social-links a:hover,
+    .music-button:hover,
+    .next-page:hover,
+    .back-page:hover {
+
+        transform:
+            none;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior:
+            auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+    }
+
+
+    /*
+        Keep video available,
+        but stop animated background
+        for users who explicitly request
+        reduced motion.
+    */
+
+    .background-video {
+
+        display:
+            none;
+
+    }
+
+}
