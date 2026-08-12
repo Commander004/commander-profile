@@ -16,9 +16,9 @@ const CONFIG = {
 
         background: "assets/background/background.jpg",
 
-        location: "c:\users\commander\world\EarthD:",
+        location: "c:/users/commander/world/EarthD:",
 
-        status: "afl | away from life"
+        status: "AFL | Away From Life"
 
     },
 
