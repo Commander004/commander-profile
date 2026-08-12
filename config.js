@@ -10,13 +10,13 @@ const CONFIG = {
 
         username: "@commander04",
 
-        bio: "why i?",
+        bio: "BIO: why i?",
 
         avatar: "assets/avatar/avatar.jpg",
 
         background: "assets/background/background.jpg",
 
-        location: "Earth",
+        location: "Location: c:/users/commander/world/EarthD:",
 
         status: "AFL | Away From Life"
 
