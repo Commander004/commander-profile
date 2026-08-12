@@ -10,7 +10,7 @@ const CONFIG = {
 
         username: "@commander04",
 
-        bio: "BIO: why i?",
+        bio: "Bio: Im fine D:",
 
         avatar: "assets/avatar/avatar.jpg",
 
