@@ -132,7 +132,7 @@ const CONFIG = {
             name: "Commander",
 
             description:
-                "My personal digital space and collection of projects."
+                "My personal tag and username"
         },
 
         {
