@@ -33,11 +33,11 @@ const CONFIG = {
 
         file: "assets/music/song.mp3",
 
-        title: "My Song",
+        title: "Moonlight",
 
-        artist: "Unknown Artist",
+        artist: "XXXTENTACION",
 
-        volume: 0.7
+        volume: 3
 
     },
 
@@ -132,7 +132,7 @@ const CONFIG = {
             name: "Commander",
 
             description:
-                "My personal digital space and collection of projects."
+                "My personal tag and username"
         },
 
         {
