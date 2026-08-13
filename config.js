@@ -37,7 +37,7 @@ const CONFIG = {
 
         artist: "XXXTENTACION",
 
-        volume: 3
+        volume: 0.7
 
     },
 
