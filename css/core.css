@@ -1,0 +1,886 @@
+/* =========================================================
+   COMMANDER04 — CORE UI
+   Version: C04-V1
+   ========================================================= */
+
+:root {
+    --bg: #06060a;
+    --bg-soft: #0a0a10;
+    --surface: rgba(16, 16, 24, .72);
+    --surface-solid: #101018;
+    --surface-hover: rgba(24, 24, 36, .86);
+    --border: rgba(255, 255, 255, .075);
+    --border-bright: rgba(255, 255, 255, .14);
+
+    --purple: #8b5cf6;
+    --purple-light: #b794ff;
+    --purple-dark: #6d3eea;
+
+    --text: #f5f3ff;
+    --text-soft: #c7c3d5;
+    --text-muted: #777384;
+
+    --success: #58e6a4;
+    --danger: #ff5f70;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+
+    --container: 1180px;
+    --header-height: 74px;
+
+    --shadow: 0 20px 70px rgba(0, 0, 0, .35);
+    --glow: 0 0 50px rgba(139, 92, 246, .12);
+
+    --font: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background: var(--bg);
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    color: white;
+    background: rgba(139, 92, 246, .55);
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #07070b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, .35);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, .65);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    border: 0;
+    outline: none;
+    font: inherit;
+    color: inherit;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    z-index: 1000;
+    background: rgba(6, 6, 10, .72);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.header-inner {
+    width: min(calc(100% - 32px), var(--container));
+    height: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    flex-shrink: 0;
+}
+
+.brand-mark {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(183, 148, 255, .35);
+    border-radius: 10px;
+    color: var(--purple-light);
+    background: rgba(139, 92, 246, .1);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: var(--glow);
+}
+
+.brand-name {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+}
+
+.brand-name span {
+    color: var(--purple-light);
+}
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.desktop-nav button {
+    padding: 9px 12px;
+    color: var(--text-muted);
+    background: transparent;
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    cursor: pointer;
+    transition: color .2s ease, background .2s ease;
+}
+
+.desktop-nav button:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, .045);
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--success);
+    font-family: var(--mono);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .08em;
+}
+
+.connection-status span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 12px var(--success);
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+.section {
+    position: relative;
+    width: min(calc(100% - 32px), var(--container));
+    margin: 0 auto;
+    padding: 130px 0;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: calc(var(--header-height) + 80px);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 10%;
+    left: -180px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, .08);
+    filter: blur(90px);
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    right: -160px;
+    bottom: 5%;
+    border-radius: 50%;
+    background: rgba(90, 50, 190, .06);
+    filter: blur(90px);
+    pointer-events: none;
+}
+
+.hero-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr .75fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .14em;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 15px var(--success);
+}
+
+.hero h1 {
+    max-width: 750px;
+    font-family: var(--mono);
+    font-size: clamp(52px, 8vw, 108px);
+    line-height: .9;
+    letter-spacing: -.08em;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--purple-light);
+    text-shadow: 0 0 50px rgba(139, 92, 246, .2);
+}
+
+.hero-description {
+    max-width: 550px;
+    margin-top: 30px;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+}
+
+.primary-button,
+.secondary-button {
+    padding: 13px 18px;
+    border-radius: 10px;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, border .2s ease, box-shadow .2s ease;
+}
+
+.primary-button {
+    background: var(--purple);
+    color: white;
+    box-shadow: 0 10px 35px rgba(139, 92, 246, .18);
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+    background: var(--purple-dark);
+}
+
+.secondary-button {
+    background: rgba(255, 255, 255, .035);
+    border: 1px solid var(--border-bright);
+    color: var(--text-soft);
+}
+
+.secondary-button:hover {
+    transform: translateY(-2px);
+    color: white;
+    background: rgba(255, 255, 255, .07);
+}
+
+/* =========================================================
+   SOCIAL BUTTONS
+   ========================================================= */
+
+.social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 17px;
+}
+
+.social-button {
+    min-height: 34px;
+    padding: 8px 11px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, .025);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    transition:
+        transform .2s ease,
+        color .2s ease,
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.social-icon {
+    min-width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 6px;
+    border: 1px solid rgba(183, 148, 255, .16);
+    background: rgba(139, 92, 246, .07);
+    color: var(--purple-light);
+    font-size: 7px;
+    letter-spacing: 0;
+}
+
+.social-button:hover {
+    transform: translateY(-2px);
+    color: var(--text);
+    background: rgba(255, 255, 255, .055);
+    border-color: rgba(183, 148, 255, .3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .18);
+}
+
+.social-button:hover .social-icon {
+    background: rgba(139, 92, 246, .14);
+    border-color: rgba(183, 148, 255, .35);
+}
+
+.social-button:active {
+    transform: translateY(0) scale(.98);
+}
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .08em;
+}
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+.hero-profile {
+    position: relative;
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.profile-glow {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    top: 25px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, .2);
+    filter: blur(50px);
+    pointer-events: none;
+}
+
+.profile-avatar {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    border: 1px solid rgba(183, 148, 255, .35);
+    border-radius: 50%;
+    background: rgba(139, 92, 246, .08);
+    box-shadow: 0 0 50px rgba(139, 92, 246, .12);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-info {
+    margin-top: 22px;
+}
+
+.profile-info h2 {
+    font-family: var(--mono);
+    font-size: 20px;
+}
+
+.profile-info p {
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.profile-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 20px;
+    padding: 7px 11px;
+    border: 1px solid rgba(88, 230, 164, .16);
+    border-radius: 999px;
+    color: var(--success);
+    background: rgba(88, 230, 164, .045);
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .08em;
+}
+
+.profile-status span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--success);
+}
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.section-heading {
+    margin-bottom: 45px;
+}
+
+.section-heading > span {
+    color: var(--purple-light);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .13em;
+}
+
+.section-heading h2 {
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: clamp(28px, 5vw, 48px);
+    letter-spacing: -.05em;
+}
+
+.section-heading p {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    width: min(calc(100% - 32px), var(--container));
+    margin: auto;
+    padding: 35px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .08em;
+}
+
+/* =========================================================
+   BOOT SCREEN
+   ========================================================= */
+
+.boot-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    background: #06060a;
+}
+
+.boot-content {
+    width: min(calc(100% - 40px), 420px);
+    text-align: center;
+}
+
+.boot-logo {
+    font-family: var(--mono);
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -.08em;
+    color: white;
+    text-shadow: 0 0 40px rgba(139, 92, 246, .35);
+}
+
+.boot-logo span {
+    color: var(--purple-light);
+}
+
+.boot-title {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .2em;
+}
+
+.boot-status {
+    margin-top: 10px;
+    color: var(--success);
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .1em;
+}
+
+.boot-message {
+    margin-top: 28px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: .13em;
+}
+
+.boot-enter {
+    margin-top: 18px;
+    padding: 13px 20px;
+    color: white;
+    background: rgba(139, 92, 246, .12);
+    border: 1px solid rgba(183, 148, 255, .35);
+    border-radius: 10px;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    cursor: pointer;
+    transition: .25s ease;
+}
+
+.boot-enter:hover {
+    background: rgba(139, 92, 246, .22);
+    border-color: rgba(183, 148, 255, .7);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(139, 92, 246, .18);
+}
+
+.boot-enter:active {
+    transform: scale(.96);
+}
+
+.boot-hint {
+    margin-top: 14px;
+    color: rgba(255,255,255,.22);
+    font-family: var(--mono);
+    font-size: 7px;
+    letter-spacing: .1em;
+}
+
+.boot-exit {
+    animation: commanderBootExit .8s cubic-bezier(.7,0,.2,1) forwards;
+}
+
+@keyframes commanderBootExit {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(1.035);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE CORE
+   ========================================================= */
+
+@media (max-width: 850px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .hero-profile {
+        max-width: 420px;
+        width: 100%;
+        margin: auto;
+    }
+}
+
+@media (max-width: 520px) {
+    :root {
+        --header-height: 64px;
+    }
+
+    .header-inner {
+        width: calc(100% - 22px);
+    }
+
+    .section {
+        width: calc(100% - 22px);
+        padding: 90px 0;
+    }
+
+    .hero {
+        padding-top: 110px;
+    }
+
+    .hero h1 {
+        font-size: clamp(48px, 16vw, 72px);
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .connection-status {
+        display: none;
+    }
+
+    .site-footer {
+        width: calc(100% - 22px);
+        flex-direction: column;
+    }
+
+    .social-buttons {
+        gap: 7px;
+    }
+
+    .social-button {
+        flex: 1 1 calc(50% - 7px);
+        justify-content: center;
+    }
+}
+
+/* =========================================================
+   COMMANDER04 — FX VARIABLES
+   ========================================================= */
+
+:root {
+    --fx-bass: 0;
+    --fx-scale: 1;
+    --fx-glow: .05;
+    --fx-x: 0px;
+    --fx-y: 0px;
+}
+
+/* =========================================================
+   SOFT FX BACKGROUND
+   ========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -20px;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(139, 92, 246, var(--fx-glow)),
+            transparent 55%
+        );
+    transform: scale(var(--fx-scale));
+    transition: transform .12s ease-out;
+}
+
+html.funk-active body {
+    transform: translate(var(--fx-x), var(--fx-y));
+}
+
+/* =========================================================
+   FUNK BORDER
+   ========================================================= */
+
+html.funk-active::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    border: 1px solid rgba(
+        183,
+        148,
+        255,
+        calc(.08 + var(--fx-bass) * .25)
+    );
+    box-shadow:
+        inset 0 0
+        calc(12px + var(--fx-bass) * 45px)
+        rgba(139, 92, 246, .18);
+}
+
+/* =========================================================
+   NATURAL FUNK MOTION
+   ========================================================= */
+
+body.funk-active {
+    animation: funkBreath 3.8s ease-in-out infinite;
+}
+
+@keyframes funkBreath {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.002);
+    }
+}
+
+/* =========================================================
+   BASS HIT
+   ========================================================= */
+
+body.funk-hit {
+    animation: funkHit .16s ease-out;
+}
+
+@keyframes funkHit {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    35% {
+        transform: translate3d(-1px, .5px, 0) scale(1.001);
+    }
+
+    65% {
+        transform: translate3d(1px, -.5px, 0) scale(1.002);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+/* =========================================================
+   BACKGROUND DRIFT
+   ========================================================= */
+
+body.funk-active::before {
+    content: "";
+    position: fixed;
+    inset: -8%;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(
+            circle at 30% 40%,
+            rgba(139, 92, 246, .08),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 70% 60%,
+            rgba(183, 148, 255, .05),
+            transparent 45%
+        );
+    animation: funkBackground 9s ease-in-out infinite alternate;
+}
+
+@keyframes funkBackground {
+    0% {
+        transform: translate3d(-.5%, 0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(.5%, -.5%, 0) scale(1.012);
+    }
+
+    100% {
+        transform: translate3d(-.25%, .5%, 0) scale(1.008);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.funk-active,
+    body.funk-hit,
+    body.funk-active::before {
+        animation: none !important;
+    }
+}
+
+@media (max-width: 600px) {
+    body.funk-hit {
+        animation: mobileFunkHit .14s ease-out;
+    }
+
+    @keyframes mobileFunkHit {
+        0%, 100% {
+            transform: scale(1);
+        }
+
+        45% {
+            transform: translateX(-.5px) scale(1.001);
+        }
+
+        70% {
+            transform: translateX(.5px) scale(1.001);
+        }
+    }
+}

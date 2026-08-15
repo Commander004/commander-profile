@@ -1,0 +1,226 @@
+/* =========================================================
+   COMMANDER04 — LYRICS HUD
+   ========================================================= */
+
+.lyrics-hud {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 8vh;
+
+    width: min(
+        900px,
+        90vw
+    );
+
+    transform:
+        translateX(-50%)
+        translateY(25px);
+
+    text-align: center;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    opacity: 0;
+
+    transition:
+        opacity .4s ease,
+        transform .5s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+/* =========================================================
+   ACTIVE
+   ========================================================= */
+
+.lyrics-hud.active {
+
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.lyrics-label {
+
+    margin-bottom: 10px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    opacity: .45;
+
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+.lyrics-text {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(
+            20px,
+            3vw,
+            36px
+        );
+
+    font-weight: 800;
+
+    line-height: 1.25;
+
+    color: #fff;
+
+    text-shadow:
+
+        0 0 10px
+        rgba(
+            139,
+            92,
+            246,
+            .8
+        ),
+
+        0 0 35px
+        rgba(
+            139,
+            92,
+            246,
+            .4
+        );
+
+}
+
+
+/* =========================================================
+   LYRIC ENTER ANIMATION
+   ========================================================= */
+
+.lyrics-pop {
+
+    animation:
+        lyricsPop
+        .5s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+@keyframes lyricsPop {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(18px)
+            scale(.92);
+
+        filter:
+            blur(8px);
+
+    }
+
+
+    55% {
+
+        opacity: 1;
+
+        transform:
+            translateY(-3px)
+            scale(1.03);
+
+        filter:
+            blur(0);
+
+    }
+
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (
+    max-width: 600px
+) {
+
+    .lyrics-hud {
+
+        width: 88vw;
+
+        bottom: 12vh;
+
+    }
+
+
+    .lyrics-label {
+
+        font-size: 8px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .lyrics-text {
+
+        font-size: 19px;
+
+    }
+
+}

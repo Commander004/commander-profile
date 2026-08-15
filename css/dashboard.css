@@ -1,0 +1,962 @@
+/* =========================================================
+   COMMANDER04 — DASHBOARD UI
+   ========================================================= */
+
+
+/* =========================================================
+   PROFILE GRID
+   ========================================================= */
+
+.profile-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        14px;
+
+}
+
+
+/* =========================================================
+   DASHBOARD CARD
+   ========================================================= */
+
+.dashboard-card {
+
+    position:
+        relative;
+
+    min-height:
+        220px;
+
+    padding:
+        28px;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.015)
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        var(--radius-md);
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+.dashboard-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        120px;
+
+    height:
+        120px;
+
+    right:
+        -60px;
+
+    top:
+        -60px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(139,92,246,.1);
+
+    filter:
+        blur(35px);
+
+    opacity:
+        0;
+
+    transition:
+        opacity .3s ease;
+
+}
+
+
+.dashboard-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(183,148,255,.22);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(139,92,246,.025)
+        );
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.25);
+
+}
+
+
+.dashboard-card:hover::before {
+
+    opacity:
+        1;
+
+}
+
+
+/* =========================================================
+   CARD ICON
+   ========================================================= */
+
+.card-icon {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    border:
+        1px solid
+        rgba(183,148,255,.18);
+
+    border-radius:
+        11px;
+
+    color:
+        var(--purple-light);
+
+    background:
+        rgba(139,92,246,.08);
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        16px;
+
+    box-shadow:
+        0 0 25px
+        rgba(139,92,246,.06);
+
+}
+
+
+/* =========================================================
+   CARD TITLE
+   ========================================================= */
+
+.dashboard-card h3 {
+
+    margin-top:
+        30px;
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        16px;
+
+    letter-spacing:
+        -.02em;
+
+}
+
+
+/* =========================================================
+   CARD DESCRIPTION
+   ========================================================= */
+
+.dashboard-card p {
+
+    max-width:
+        300px;
+
+    margin-top:
+        12px;
+
+    color:
+        var(--text-muted);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   SKILLS PANEL
+   ========================================================= */
+
+.skills-panel {
+
+    margin-top:
+        14px;
+
+    padding:
+        28px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        var(--radius-md);
+
+}
+
+
+.panel-title {
+
+    margin-bottom:
+        25px;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .13em;
+
+}
+
+
+/* =========================================================
+   SKILL
+   ========================================================= */
+
+.skill {
+
+    margin-top:
+        20px;
+
+}
+
+
+.skill:first-of-type {
+
+    margin-top:
+        0;
+
+}
+
+
+.skill-head {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    color:
+        var(--text-soft);
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .06em;
+
+}
+
+
+.skill-head span:last-child {
+
+    color:
+        var(--purple-light);
+
+}
+
+
+/* =========================================================
+   SKILL BAR
+   ========================================================= */
+
+.skill-bar {
+
+    position:
+        relative;
+
+    height:
+        5px;
+
+    margin-top:
+        9px;
+
+    overflow:
+        hidden;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border-radius:
+        999px;
+
+}
+
+
+.skill-bar span {
+
+    position:
+        absolute;
+
+    inset:
+        0 auto 0 0;
+
+    display:
+        block;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple-dark),
+            var(--purple-light)
+        );
+
+    border-radius:
+        inherit;
+
+    box-shadow:
+        0 0 18px
+        rgba(139,92,246,.35);
+
+}
+
+
+/* =========================================================
+   PROJECT GRID
+   ========================================================= */
+
+.projects-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        14px;
+
+}
+
+
+/* =========================================================
+   PROJECT CARD
+   ========================================================= */
+
+.project-card {
+
+    position:
+        relative;
+
+    min-height:
+        260px;
+
+    padding:
+        30px;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.012)
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        var(--radius-md);
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+.project-card::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        180px;
+
+    height:
+        180px;
+
+    right:
+        -100px;
+
+    bottom:
+        -100px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(139,92,246,.08);
+
+    filter:
+        blur(45px);
+
+    opacity:
+        0;
+
+    transition:
+        opacity .3s ease;
+
+}
+
+
+.project-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(183,148,255,.24);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.28);
+
+}
+
+
+.project-card:hover::after {
+
+    opacity:
+        1;
+
+}
+
+
+/* =========================================================
+   PROJECT NUMBER
+   ========================================================= */
+
+.project-number {
+
+    color:
+        rgba(183,148,255,.4);
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .12em;
+
+}
+
+
+/* =========================================================
+   PROJECT TITLE
+   ========================================================= */
+
+.project-card h3 {
+
+    margin-top:
+        45px;
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        20px;
+
+    letter-spacing:
+        -.04em;
+
+}
+
+
+/* =========================================================
+   PROJECT DESCRIPTION
+   ========================================================= */
+
+.project-card p {
+
+    max-width:
+        430px;
+
+    margin-top:
+        12px;
+
+    color:
+        var(--text-muted);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   PROJECT TAGS
+   ========================================================= */
+
+.project-tags {
+
+    position:
+        absolute;
+
+    left:
+        30px;
+
+    bottom:
+        28px;
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        6px;
+
+}
+
+
+.project-tags span {
+
+    padding:
+        6px 8px;
+
+    color:
+        var(--text-muted);
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    border-radius:
+        6px;
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        .06em;
+
+}
+
+
+/* =========================================================
+   TERMINAL
+   ========================================================= */
+
+.terminal {
+
+    overflow:
+        hidden;
+
+    background:
+        #08080d;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:
+        var(--radius-md);
+
+    box-shadow:
+        0 30px 90px
+        rgba(0,0,0,.35);
+
+}
+
+
+/* =========================================================
+   TERMINAL HEADER
+   ========================================================= */
+
+.terminal-header {
+
+    height:
+        43px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        13px;
+
+    padding:
+        0 16px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        8px;
+
+}
+
+
+/* =========================================================
+   TERMINAL DOTS
+   ========================================================= */
+
+.terminal-dots {
+
+    display:
+        flex;
+
+    gap:
+        5px;
+
+}
+
+
+.terminal-dots span {
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,.15);
+
+}
+
+
+.terminal-dots span:nth-child(1) {
+
+    background:
+        rgba(255,95,112,.7);
+
+}
+
+
+.terminal-dots span:nth-child(2) {
+
+    background:
+        rgba(255,193,77,.7);
+
+}
+
+
+.terminal-dots span:nth-child(3) {
+
+    background:
+        rgba(88,230,164,.7);
+
+}
+
+
+/* =========================================================
+   TERMINAL OUTPUT
+   ========================================================= */
+
+.terminal-output {
+
+    min-height:
+        300px;
+
+    max-height:
+        430px;
+
+    padding:
+        20px;
+
+    overflow-y:
+        auto;
+
+    color:
+        #a9a2b9;
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        10px;
+
+    line-height:
+        1.9;
+
+}
+
+
+.terminal-output div {
+
+    white-space:
+        pre-wrap;
+
+    word-break:
+        break-word;
+
+}
+
+
+.terminal-output .terminal-command {
+
+    color:
+        var(--purple-light);
+
+}
+
+
+.terminal-output .terminal-error {
+
+    color:
+        var(--danger);
+
+}
+
+
+/* =========================================================
+   TERMINAL INPUT
+   ========================================================= */
+
+.terminal-input-row {
+
+    min-height:
+        50px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    padding:
+        0 20px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.055);
+
+    color:
+        var(--purple-light);
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        11px;
+
+}
+
+
+.terminal-input-row input {
+
+    width:
+        100%;
+
+    min-width:
+        0;
+
+    border:
+        0;
+
+    outline:
+        0;
+
+    background:
+        transparent;
+
+    color:
+        white;
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        10px;
+
+}
+
+
+.terminal-input-row input::placeholder {
+
+    color:
+        rgba(255,255,255,.2);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE DASHBOARD
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .profile-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .projects-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .dashboard-card {
+
+        min-height:
+            190px;
+
+    }
+
+    .project-card {
+
+        min-height:
+            245px;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .skills-panel {
+
+        padding:
+            20px;
+
+    }
+
+    .dashboard-card {
+
+        padding:
+            22px;
+
+    }
+
+    .project-card {
+
+        padding:
+            22px;
+
+    }
+
+    .project-card h3 {
+
+        margin-top:
+            35px;
+
+    }
+
+    .project-tags {
+
+        left:
+            22px;
+
+        bottom:
+            21px;
+
+    }
+
+}

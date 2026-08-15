@@ -1,0 +1,874 @@
+/* =========================================================
+   COMMANDER04 — RADIO UI
+   ========================================================= */
+
+
+/* =========================================================
+   RADIO SECTION
+   ========================================================= */
+
+.radio-section {
+
+    position:
+        relative;
+
+}
+
+
+/* =========================================================
+   RADIO PLAYER
+   ========================================================= */
+
+.radio-player {
+
+    position:
+        relative;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        270px 1fr;
+
+    min-height:
+        330px;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.018)
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        var(--radius-lg);
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+   ========================================================= */
+
+.radio-player::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        350px;
+
+    height:
+        350px;
+
+    left:
+        -160px;
+
+    top:
+        -120px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(139,92,246,.1);
+
+    filter:
+        blur(80px);
+
+    pointer-events:
+        none;
+
+    transition:
+        transform .4s ease,
+        opacity .4s ease;
+
+}
+
+
+/* =========================================================
+   RADIO COVER
+   ========================================================= */
+
+.radio-cover {
+
+    position:
+        relative;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    padding:
+        35px;
+
+    background:
+        rgba(0,0,0,.14);
+
+    border-right:
+        1px solid
+        var(--border);
+
+}
+
+
+/* =========================================================
+   COVER ART
+   ========================================================= */
+
+.radio-cover-inner {
+
+    position:
+        relative;
+
+    width:
+        185px;
+
+    aspect-ratio:
+        1;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(183,148,255,.28);
+
+    border-radius:
+        22px;
+
+    background:
+        radial-gradient(
+            circle at 30% 20%,
+            rgba(183,148,255,.2),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #15111f,
+            #09090e
+        );
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.45);
+
+    transition:
+        transform .5s ease,
+        box-shadow .5s ease;
+
+}
+
+
+.radio-cover-inner::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        14px;
+
+    border:
+        1px solid
+        rgba(183,148,255,.12);
+
+    border-radius:
+        16px;
+
+}
+
+
+.radio-cover-inner::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        100px;
+
+    height:
+        100px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(139,92,246,.12);
+
+    filter:
+        blur(25px);
+
+}
+
+
+.radio-cover-inner span {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        32px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -.08em;
+
+    color:
+        white;
+
+    text-shadow:
+        0 0 30px
+        rgba(183,148,255,.35);
+
+}
+
+
+.radio-player.playing
+.radio-cover-inner {
+
+    animation:
+        radioCoverPulse
+        2.4s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes radioCoverPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+        box-shadow:
+            0 30px 80px
+            rgba(0,0,0,.45);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.025);
+
+        box-shadow:
+            0 30px 90px
+            rgba(139,92,246,.18);
+
+    }
+
+}
+
+
+/* =========================================================
+   RADIO MAIN
+   ========================================================= */
+
+.radio-main {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    padding:
+        45px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+}
+
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.radio-label {
+
+    color:
+        var(--purple-light);
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .15em;
+
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.radio-main h3 {
+
+    margin-top:
+        13px;
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        clamp(
+            22px,
+            4vw,
+            34px
+        );
+
+    letter-spacing:
+        -.05em;
+
+}
+
+
+.radio-main > p {
+
+    margin-top:
+        6px;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        .08em;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.radio-progress {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    margin-top:
+        32px;
+
+    overflow:
+        hidden;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border-radius:
+        999px;
+
+    cursor:
+        pointer;
+
+}
+
+
+.radio-progress-bar {
+
+    position:
+        absolute;
+
+    inset:
+        0 auto 0 0;
+
+    width:
+        0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple-dark),
+            var(--purple-light)
+        );
+
+    border-radius:
+        inherit;
+
+    box-shadow:
+        0 0 15px
+        rgba(139,92,246,.35);
+
+}
+
+
+/* =========================================================
+   TIME
+   ========================================================= */
+
+.radio-time {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    margin-top:
+        8px;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        8px;
+
+}
+
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.radio-controls {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        28px;
+
+}
+
+
+.radio-controls button {
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:
+        12px;
+
+    color:
+        var(--text-soft);
+
+    background:
+        rgba(255,255,255,.035);
+
+    font-size:
+        14px;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+
+}
+
+
+.radio-controls button:hover {
+
+    transform:
+        translateY(-2px);
+
+    color:
+        white;
+
+    background:
+        rgba(255,255,255,.075);
+
+    border-color:
+        rgba(183,148,255,.22);
+
+}
+
+
+/* =========================================================
+   PLAY BUTTON
+   ========================================================= */
+
+.radio-controls .radio-play {
+
+    width:
+        52px;
+
+    height:
+        52px;
+
+    border-radius:
+        50%;
+
+    color:
+        white;
+
+    background:
+        var(--purple);
+
+    border:
+        1px solid
+        rgba(183,148,255,.35);
+
+    box-shadow:
+        0 10px 35px
+        rgba(139,92,246,.25);
+
+}
+
+
+.radio-controls .radio-play:hover {
+
+    background:
+        var(--purple-dark);
+
+    box-shadow:
+        0 12px 45px
+        rgba(139,92,246,.35);
+
+}
+
+
+/* =========================================================
+   EXTRA CONTROLS
+   ========================================================= */
+
+.radio-extra {
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    margin-top:
+        20px;
+
+}
+
+
+.radio-extra button {
+
+    padding:
+        7px 10px;
+
+    color:
+        var(--text-muted);
+
+    background:
+        transparent;
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    border-radius:
+        7px;
+
+    font-family:
+        var(--mono);
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        .08em;
+
+    cursor:
+        pointer;
+
+    transition:
+        .2s ease;
+
+}
+
+
+.radio-extra button:hover {
+
+    color:
+        var(--purple-light);
+
+    border-color:
+        rgba(183,148,255,.2);
+
+}
+
+
+.radio-extra button.active {
+
+    color:
+        var(--purple-light);
+
+    background:
+        rgba(139,92,246,.08);
+
+    border-color:
+        rgba(183,148,255,.25);
+
+}
+
+
+/* =========================================================
+   PLAYING STATE
+   ========================================================= */
+
+.radio-player.playing::before {
+
+    animation:
+        radioGlow
+        2.5s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes radioGlow {
+
+    0%,
+    100% {
+
+        opacity:
+            .6;
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1.18);
+
+    }
+
+}
+
+
+/* =========================================================
+   MUSIC VISUALIZER
+   ========================================================= */
+
+.radio-player::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        25px;
+
+    bottom:
+        18px;
+
+    width:
+        80px;
+
+    height:
+        28px;
+
+    opacity:
+        .18;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            var(--purple-light) 0 3px,
+            transparent 3px 8px
+        );
+
+    mask-image:
+        linear-gradient(
+            to top,
+            black,
+            transparent
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .radio-player {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .radio-cover {
+
+        min-height:
+            250px;
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            var(--border);
+
+    }
+
+    .radio-cover-inner {
+
+        width:
+            150px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+    .radio-player {
+
+        border-radius:
+            17px;
+
+    }
+
+    .radio-cover {
+
+        min-height:
+            210px;
+
+        padding:
+            25px;
+
+    }
+
+    .radio-cover-inner {
+
+        width:
+            125px;
+
+        border-radius:
+            17px;
+
+    }
+
+    .radio-cover-inner span {
+
+        font-size:
+            25px;
+
+    }
+
+    .radio-main {
+
+        padding:
+            28px 20px 25px;
+
+    }
+
+    .radio-controls {
+
+        justify-content:
+            center;
+
+    }
+
+    .radio-extra {
+
+        justify-content:
+            center;
+
+    }
+
+}
