@@ -1,0 +1,1089 @@
+/* =========================================================
+   COMMANDER04 — RESPONSIVE SYSTEM
+   C04-V1
+   Desktop + Tablet + Mobile
+   ========================================================= */
+
+
+/* =========================================================
+   LARGE DESKTOP
+   1400px+
+   ========================================================= */
+
+@media (min-width: 1400px) {
+
+    .section {
+        width: min(calc(100% - 64px), 1240px);
+    }
+
+    .header-inner {
+        width: min(calc(100% - 64px), 1240px);
+    }
+
+    .hero-grid {
+        gap: 90px;
+    }
+
+    .hero h1 {
+        font-size: clamp(72px, 7vw, 112px);
+    }
+
+    .hero-profile {
+        padding: 48px 32px;
+    }
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   1101px — 1399px
+   ========================================================= */
+
+@media (min-width: 1101px) and (max-width: 1399px) {
+
+    .hero-grid {
+        grid-template-columns:
+            minmax(0, 1.15fr)
+            minmax(320px, .85fr);
+
+        gap: 60px;
+    }
+
+    .hero h1 {
+        font-size: clamp(64px, 7vw, 96px);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+   851px — 1100px
+   ========================================================= */
+
+@media (min-width: 851px) and (max-width: 1100px) {
+
+    .section {
+        padding: 110px 0;
+    }
+
+
+    .hero {
+        padding-top: 120px;
+    }
+
+
+    .hero-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(280px, .75fr);
+
+        gap: 40px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                58px,
+                7vw,
+                82px
+            );
+
+    }
+
+
+    .hero-description {
+
+        max-width:
+            480px;
+
+        font-size:
+            14px;
+
+    }
+
+
+    .hero-profile {
+
+        padding:
+            32px 20px;
+
+    }
+
+
+    .profile-avatar {
+
+        width:
+            130px;
+
+        height:
+            130px;
+
+    }
+
+
+    .desktop-nav {
+
+        gap:
+            2px;
+
+    }
+
+
+    .desktop-nav button {
+
+        padding:
+            8px 9px;
+
+        font-size:
+            8px;
+
+    }
+
+
+    .connection-status {
+
+        font-size:
+            7px;
+
+    }
+
+}
+
+
+/* =========================================================
+   TABLET PORTRAIT
+   601px — 850px
+   ========================================================= */
+
+@media (min-width: 601px) and (max-width: 850px) {
+
+    .section {
+
+        width:
+            calc(100% - 40px);
+
+        padding:
+            105px 0;
+
+    }
+
+
+    .hero {
+
+        min-height:
+            auto;
+
+        padding-top:
+            140px;
+
+        padding-bottom:
+            90px;
+
+    }
+
+
+    .hero-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            55px;
+
+    }
+
+
+    .hero-content {
+
+        max-width:
+            760px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                58px,
+                11vw,
+                88px
+            );
+
+    }
+
+
+    .hero-description {
+
+        max-width:
+            620px;
+
+    }
+
+
+    .hero-profile {
+
+        width:
+            min(100%, 430px);
+
+        margin:
+            0 auto;
+
+    }
+
+
+    .profile-avatar {
+
+        width:
+            145px;
+
+        height:
+            145px;
+
+    }
+
+
+    /* Cards */
+
+    .profile-grid,
+    .projects-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    /* Radio */
+
+    .radio-player {
+
+        grid-template-columns:
+            190px minmax(0, 1fr);
+
+    }
+
+
+    /* Terminal */
+
+    .terminal {
+
+        width:
+            100%;
+
+    }
+
+
+    .site-footer {
+
+        padding:
+            30px 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   401px — 600px
+   ========================================================= */
+
+@media (min-width: 401px) and (max-width: 600px) {
+
+    .section {
+
+        width:
+            calc(100% - 28px);
+
+        padding:
+            90px 0;
+
+    }
+
+
+    .hero {
+
+        min-height:
+            auto;
+
+        padding-top:
+            110px;
+
+        padding-bottom:
+            75px;
+
+    }
+
+
+    .hero-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            42px;
+
+    }
+
+
+    .eyebrow {
+
+        margin-bottom:
+            16px;
+
+        font-size:
+            8px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                48px,
+                15vw,
+                70px
+            );
+
+        line-height:
+            .92;
+
+    }
+
+
+    .hero-description {
+
+        margin-top:
+            22px;
+
+        font-size:
+            13px;
+
+        line-height:
+            1.7;
+
+    }
+
+
+    .hero-actions {
+
+        margin-top:
+            25px;
+
+        gap:
+            8px;
+
+    }
+
+
+    .primary-button,
+    .secondary-button {
+
+        padding:
+            12px 15px;
+
+        font-size:
+            8px;
+
+    }
+
+
+    .hero-meta {
+
+        margin-top:
+            24px;
+
+    }
+
+
+    /* Profile */
+
+    .hero-profile {
+
+        width:
+            100%;
+
+        padding:
+            32px 20px;
+
+    }
+
+
+    .profile-avatar {
+
+        width:
+            125px;
+
+        height:
+            125px;
+
+    }
+
+
+    .profile-info h2 {
+
+        font-size:
+            18px;
+
+    }
+
+
+    /* Sections */
+
+    .section-heading {
+
+        margin-bottom:
+            32px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size:
+            clamp(
+                27px,
+                8vw,
+                38px
+            );
+
+    }
+
+
+    .section-heading p {
+
+        font-size:
+            12px;
+
+    }
+
+
+    /* Cards */
+
+    .profile-grid,
+    .projects-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            12px;
+
+    }
+
+
+    /* Radio */
+
+    .radio-player {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .radio-cover {
+
+        width:
+            100%;
+
+    }
+
+
+    /* Terminal */
+
+    .terminal {
+
+        overflow:
+            hidden;
+
+    }
+
+
+    .terminal-input-row {
+
+        gap:
+            8px;
+
+    }
+
+
+    .terminal-input-row input {
+
+        min-width:
+            0;
+
+    }
+
+
+    /* Footer */
+
+    .site-footer {
+
+        width:
+            calc(100% - 28px);
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            8px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   320px — 400px
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .section {
+
+        width:
+            calc(100% - 22px);
+
+        padding:
+            78px 0;
+
+    }
+
+
+    .hero {
+
+        min-height:
+            auto;
+
+        padding-top:
+            100px;
+
+        padding-bottom:
+            65px;
+
+    }
+
+
+    .hero-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            35px;
+
+    }
+
+
+    .eyebrow {
+
+        font-size:
+            7px;
+
+        letter-spacing:
+            .11em;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                43px,
+                15vw,
+                58px
+            );
+
+        letter-spacing:
+            -.075em;
+
+    }
+
+
+    .hero-description {
+
+        margin-top:
+            20px;
+
+        font-size:
+            12px;
+
+        line-height:
+            1.65;
+
+    }
+
+
+    .hero-actions {
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        margin-top:
+            23px;
+
+    }
+
+
+    .primary-button,
+    .secondary-button {
+
+        width:
+            100%;
+
+        text-align:
+            center;
+
+    }
+
+
+    .hero-meta {
+
+        margin-top:
+            21px;
+
+        font-size:
+            7px;
+
+    }
+
+
+    /* Profile */
+
+    .hero-profile {
+
+        padding:
+            28px 16px;
+
+        border-radius:
+            18px;
+
+    }
+
+
+    .profile-avatar {
+
+        width:
+            105px;
+
+        height:
+            105px;
+
+    }
+
+
+    .profile-info {
+
+        margin-top:
+            18px;
+
+    }
+
+
+    .profile-info h2 {
+
+        font-size:
+            17px;
+
+    }
+
+
+    .profile-info p {
+
+        font-size:
+            10px;
+
+    }
+
+
+    /* Section heading */
+
+    .section-heading {
+
+        margin-bottom:
+            27px;
+
+    }
+
+
+    .section-heading > span {
+
+        font-size:
+            7px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size:
+            25px;
+
+    }
+
+
+    .section-heading p {
+
+        font-size:
+            11px;
+
+    }
+
+
+    /* Cards */
+
+    .profile-grid,
+    .projects-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            10px;
+
+    }
+
+
+    /* Radio */
+
+    .radio-player {
+
+        grid-template-columns:
+            1fr;
+
+        border-radius:
+            17px;
+
+    }
+
+
+    .radio-cover {
+
+        min-height:
+            190px;
+
+    }
+
+
+    .radio-main {
+
+        min-width:
+            0;
+
+    }
+
+
+    .radio-controls {
+
+        gap:
+            12px;
+
+    }
+
+
+    /* Terminal */
+
+    .terminal {
+
+        border-radius:
+            12px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    .terminal-input-row input {
+
+        font-size:
+            10px;
+
+    }
+
+
+    /* Footer */
+
+    .site-footer {
+
+        width:
+            calc(100% - 22px);
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        padding:
+            28px 0;
+
+        gap:
+            7px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+   300px — 319px
+   ========================================================= */
+
+@media (max-width: 319px) {
+
+    .section {
+
+        width:
+            calc(100% - 18px);
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            40px;
+
+    }
+
+
+    .hero-profile {
+
+        padding:
+            24px 12px;
+
+    }
+
+
+    .profile-avatar {
+
+        width:
+            90px;
+
+        height:
+            90px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .radio-cover {
+
+        min-height:
+            165px;
+
+    }
+
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+   ========================================================= */
+
+@media (
+    max-height: 520px
+) and (
+    orientation: landscape
+) {
+
+    .hero {
+
+        min-height:
+            auto;
+
+        padding-top:
+            100px;
+
+        padding-bottom:
+            60px;
+
+    }
+
+
+    .hero-grid {
+
+        grid-template-columns:
+            1.15fr .85fr;
+
+        gap:
+            25px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                42px,
+                8vw,
+                65px
+            );
+
+    }
+
+
+    .hero-description {
+
+        margin-top:
+            15px;
+
+        font-size:
+            11px;
+
+    }
+
+
+    .hero-actions {
+
+        margin-top:
+            18px;
+
+    }
+
+
+    .hero-profile {
+
+        padding:
+            22px 15px;
+
+    }
+
+
+    .profile-avatar {
+
+        width:
+            90px;
+
+        height:
+            90px;
+
+    }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+
+    button,
+    a {
+
+        -webkit-tap-highlight-color:
+            transparent;
+
+    }
+
+
+    .primary-button:hover,
+    .secondary-button:hover,
+    .desktop-nav button:hover {
+
+        transform:
+            none;
+
+    }
+
+
+    .primary-button:active,
+    .secondary-button:active {
+
+        transform:
+            scale(.98);
+
+    }
+
+}
+
+
+/* =========================================================
+   SAFE AREA — MODERN PHONES
+   ========================================================= */
+
+@supports (
+    padding: env(safe-area-inset-bottom)
+) {
+
+    body {
+
+        padding-bottom:
+            env(safe-area-inset-bottom);
+
+    }
+
+
+    .site-header {
+
+        padding-top:
+            env(safe-area-inset-top);
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    html {
+
+        scroll-behavior:
+            auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
+        scroll-behavior:
+            auto !important;
+
+    }
+
+                }
