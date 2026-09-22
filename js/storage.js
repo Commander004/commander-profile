@@ -61,17 +61,38 @@ function exportConfig() {
 /** Publish: download as config.json — commit this file to the repo root for public site */
 function publishConfig(config) {
   const data = config || getConfig();
-  downloadJSON(data, "config.json");
+  return downloadJSON(data, "config.json");
 }
 
 function downloadJSON(obj, filename) {
-  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
+  try {
+    const text = JSON.stringify(obj, null, 2);
+    const blob = new Blob([text], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename || "config.json";
+    a.style.display = "none";
+    a.setAttribute("download", filename || "config.json");
+    document.body.appendChild(a);
+    // Some browsers need a real user-gesture chain + element in DOM
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 1500);
+    return true;
+  } catch (e) {
+    console.error("Download failed", e);
+    // Fallback: open data URL in new tab so user can Save As
+    try {
+      const dataUrl = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj, null, 2));
+      window.open(dataUrl, "_blank");
+    } catch (e2) {
+      alert("دانلود ناموفق بود. Console را چک کن یا از Export استفاده کن.");
+    }
+    return false;
+  }
 }
 
 function importConfig(file) {

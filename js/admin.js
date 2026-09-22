@@ -344,16 +344,32 @@
       toast("Exported");
     };
 
-    function doPublish() {
-      collectConfig();
-      saveConfig(config);
-      publishConfig(config);
-      toast("config.json دانلود شد — در ریشه ریپو آپلود و Commit کن");
+    function doPublish(e) {
+      if (e) e.preventDefault();
+      try {
+        collectConfig();
+        saveConfig(config);
+        const ok = publishConfig(config);
+        if (ok !== false) {
+          toast("config.json دانلود شد — در ریشه ریپو آپلود و Commit کن");
+        } else {
+          toast("دانلود مشکل داشت — اگر تب جدید باز شد، Save As کن");
+        }
+      } catch (err) {
+        console.error(err);
+        toast("خطا در Publish: " + (err.message || err));
+      }
     }
     const pubBtn = document.getElementById("publish-btn");
     const pubTop = document.getElementById("publish-top-btn");
-    if (pubBtn) pubBtn.onclick = doPublish;
-    if (pubTop) pubTop.onclick = doPublish;
+    if (pubBtn) {
+      pubBtn.type = "button";
+      pubBtn.onclick = doPublish;
+    }
+    if (pubTop) {
+      pubTop.type = "button";
+      pubTop.onclick = doPublish;
+    }
 
     document.getElementById("import-btn").onclick = () => {
       const file = document.getElementById("import-file").files[0];
