@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <title>Commander | Personal Profile</title>
+  <meta name="description" content="Personal digital space of Commander004" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <script src="config.js"></script>
+  <script src="js/storage.js"></script>
+</head>
+<body>
+  <div id="bg-layer">
+    <div class="bg-media" id="bg-media"></div>
+    <div class="bg-overlay" id="bg-overlay"></div>
+  </div>
+
+  <canvas id="effects-canvas"></canvas>
+
+  <main id="profile-root">
+    <!-- Profile Card -->
+    <div class="profile-card" id="profile-card">
+      <div class="avatar-wrap">
+        <img class="avatar" id="avatar" src="" alt="Avatar" />
+      </div>
+      <div class="display-name" id="display-name"></div>
+      <div class="username" id="username"></div>
+      <div class="bio" id="bio"></div>
+      <div class="meta" id="meta"></div>
+      <div class="social-grid" id="social-grid"></div>
+    </div>
+
+    <!-- Custom Text Blocks -->
+    <div class="text-blocks" id="text-blocks"></div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="music-player">
+      <img class="music-cover" id="music-cover" src="" alt="" />
+      <div class="music-info">
+        <div class="music-title" id="music-title">—</div>
+        <div class="music-artist" id="music-artist">—</div>
+        <div class="music-progress" id="music-progress">
+          <div class="music-progress-bar" id="music-progress-bar"></div>
+        </div>
+      </div>
+      <div class="music-controls">
+        <button class="music-btn" id="prev-btn" title="Previous">⏮</button>
+        <button class="music-btn play" id="play-btn" title="Play">▶</button>
+        <button class="music-btn" id="next-btn" title="Next">⏭</button>
+      </div>
+    </div>
+  </main>
+
+  <audio id="audio-el" preload="metadata"></audio>
+
+  <script src="js/profile.js"></script>
+</body>
+</html>

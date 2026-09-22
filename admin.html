@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#0d0d14" />
+  <title>Admin | Commander Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <script src="config.js"></script>
+  <script src="js/storage.js"></script>
+</head>
+<body class="admin-body">
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="login-page">
+    <div class="login-card">
+      <h1>Commander Admin</h1>
+      <p>ورود به پنل مدیریت پروفایل</p>
+      <div class="login-error" id="login-error">نام کاربری یا رمز عبور اشتباه است</div>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="login-user" autocomplete="username" placeholder="commander" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-pass" autocomplete="current-password" placeholder="••••••••" />
+      </div>
+      <div class="remember-row">
+        <input type="checkbox" id="remember-me" />
+        <label for="remember-me">Remember me</label>
+      </div>
+      <button class="btn btn-primary" id="login-btn">ورود / Login</button>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div id="admin-app" class="admin-layout" style="display:none;">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span>🎛️</span> Commander
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-panel="overview">📊 Overview</button>
+        <button class="nav-item" data-panel="profile">👤 Profile</button>
+        <button class="nav-item" data-panel="background">🖼️ Background</button>
+        <button class="nav-item" data-panel="music">🎵 Music</button>
+        <button class="nav-item" data-panel="texts">✏️ Texts</button>
+        <button class="nav-item" data-panel="social">🔗 Social</button>
+        <button class="nav-item" data-panel="theme">🎨 Theme</button>
+        <button class="nav-item" data-panel="effects">✨ Effects</button>
+        <button class="nav-item" data-panel="seo">🔍 SEO</button>
+        <button class="nav-item" data-panel="customcss">💻 Custom CSS</button>
+        <button class="nav-item" data-panel="settings">⚙️ Settings</button>
+        <button class="nav-item" data-panel="export">📦 Export / Import</button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn btn-ghost btn-sm" style="width:100%" id="logout-btn">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main-content">
+      <header class="admin-topbar">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="menu-toggle" id="menu-toggle">☰</button>
+          <h2 id="panel-title">Overview</h2>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-ghost btn-sm" id="preview-toggle-btn">Preview</button>
+          <button class="btn btn-primary btn-sm" id="save-btn">💾 Save</button>
+        </div>
+      </header>
+
+      <div class="admin-body-content">
+        <div class="panel-area" id="panel-area">
+          <!-- OVERVIEW -->
+          <section class="panel-section active" id="panel-overview">
+            <div class="card">
+              <h3>خوش آمدید 👋</h3>
+              <p style="color:var(--admin-muted);font-size:0.9rem;line-height:1.6;">
+                از این پنل می‌توانید تمام ظاهر پروفایل خود را بدون دست زدن به کد تغییر دهید.
+                تغییرات را ذخیره کنید و با Export یک بکاپ JSON بگیرید.
+              </p>
+            </div>
+            <div class="grid-2">
+              <div class="card">
+                <h3>وضعیت</h3>
+                <p style="font-size:0.85rem;color:var(--admin-muted);">تنظیمات در localStorage ذخیره می‌شوند.</p>
+                <button class="btn btn-primary btn-sm" style="margin-top:12px;" id="open-site-btn">باز کردن سایت عمومی</button>
+              </div>
+              <div class="card">
+                <h3>اقدامات سریع</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;">
+                  <button class="btn btn-ghost btn-sm" data-goto="profile">Profile</button>
+                  <button class="btn btn-ghost btn-sm" data-goto="theme">Theme</button>
+                  <button class="btn btn-ghost btn-sm" data-goto="music">Music</button>
+                  <button class="btn btn-ghost btn-sm" data-goto="background">Background</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- PROFILE -->
+          <section class="panel-section" id="panel-profile">
+            <div class="card">
+              <h3>تصویر پروفایل</h3>
+              <label class="field">Avatar URL</label>
+              <input type="url" id="p-avatar" placeholder="https://..." />
+              <div class="grid-2" style="margin-top:12px;">
+                <div>
+                  <label class="field">Shape</label>
+                  <select id="p-shape">
+                    <option value="circle">Circle</option>
+                    <option value="rounded">Rounded</option>
+                    <option value="square">Square</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field">Size (px)</label>
+                  <input type="number" id="p-size" min="60" max="200" />
+                </div>
+              </div>
+              <div class="switch-row"><span>Border</span><label class="switch"><input type="checkbox" id="p-border" /><span class="slider"></span></label></div>
+              <div class="switch-row"><span>Glow</span><label class="switch"><input type="checkbox" id="p-glow" /><span class="slider"></span></label></div>
+              <div>
+                <label class="field">Animation</label>
+                <select id="p-anim">
+                  <option value="none">None</option>
+                  <option value="pulse">Pulse</option>
+                  <option value="float">Float</option>
+                </select>
+              </div>
+            </div>
+            <div class="card">
+              <h3>اطلاعات</h3>
+              <label class="field">Display Name</label>
+              <input type="text" id="p-display" />
+              <label class="field" style="margin-top:10px;">Username</label>
+              <input type="text" id="p-username" />
+              <label class="field" style="margin-top:10px;">Bio</label>
+              <textarea id="p-bio" rows="4"></textarea>
+              <div class="grid-2" style="margin-top:10px;">
+                <div><label class="field">Location</label><input type="text" id="p-location" /></div>
+                <div><label class="field">Status</label><input type="text" id="p-status" /></div>
+              </div>
+              <label class="field" style="margin-top:10px;">Pronouns</label>
+              <input type="text" id="p-pronouns" />
+              <div class="switch-row"><span>Verified Badge</span><label class="switch"><input type="checkbox" id="p-verified" /><span class="slider"></span></label></div>
+              <label class="field">Custom Badge</label>
+              <input type="text" id="p-badge" placeholder="DEV, PRO, ..." />
+            </div>
+          </section>
+
+          <!-- BACKGROUND -->
+          <section class="panel-section" id="panel-background">
+            <div class="card">
+              <h3>نوع پس‌زمینه</h3>
+              <select id="bg-type">
+                <option value="solid">Solid Color</option>
+                <option value="gradient">Gradient</option>
+                <option value="image">Image</option>
+                <option value="gif">GIF</option>
+                <option value="video">Video</option>
+              </select>
+            </div>
+            <div class="card" id="bg-solid-card">
+              <h3>Solid</h3>
+              <input type="color" id="bg-solid" />
+            </div>
+            <div class="card" id="bg-gradient-card">
+              <h3>Gradient CSS</h3>
+              <textarea id="bg-gradient" rows="2" placeholder="linear-gradient(...)"></textarea>
+            </div>
+            <div class="card" id="bg-media-card">
+              <h3>Media URL</h3>
+              <input type="url" id="bg-image" placeholder="URL تصویر یا GIF" />
+              <input type="url" id="bg-video" placeholder="URL ویدیو (mp4)" style="margin-top:8px;" />
+              <p style="font-size:0.75rem;color:var(--admin-muted);margin-top:8px;">
+                فایل‌ها را داخل assets قرار دهید یا از CDN استفاده کنید. GitHub Pages آپلود مستقیم ندارد.
+              </p>
+            </div>
+            <div class="card">
+              <h3>تنظیمات تصویر / ویدیو</h3>
+              <label class="field">Blur: <span id="bg-blur-val">0</span>px</label>
+              <input type="range" id="bg-blur" min="0" max="20" value="0" />
+              <label class="field">Brightness: <span id="bg-bright-val">100</span>%</label>
+              <input type="range" id="bg-bright" min="20" max="150" value="100" />
+              <label class="field">Opacity: <span id="bg-op-val">100</span>%</label>
+              <input type="range" id="bg-op" min="10" max="100" value="100" />
+              <label class="field">Overlay Opacity: <span id="bg-ov-val">40</span>%</label>
+              <input type="range" id="bg-ov" min="0" max="90" value="40" />
+              <label class="field">Overlay Color</label>
+              <input type="text" id="bg-overlay" placeholder="rgba(0,0,0,0.4)" />
+            </div>
+          </section>
+
+          <!-- MUSIC -->
+          <section class="panel-section" id="panel-music">
+            <div class="card">
+              <div class="switch-row"><span>فعال بودن Music Player</span><label class="switch"><input type="checkbox" id="m-enabled" /><span class="slider"></span></label></div>
+              <div class="switch-row"><span>Autoplay</span><label class="switch"><input type="checkbox" id="m-autoplay" /><span class="slider"></span></label></div>
+              <div class="switch-row"><span>Loop</span><label class="switch"><input type="checkbox" id="m-loop" /><span class="slider"></span></label></div>
+              <label class="field">Style</label>
+              <select id="m-style">
+                <option value="glass">Glass</option>
+                <option value="minimal">Minimal</option>
+                <option value="compact">Compact</option>
+                <option value="floating">Floating</option>
+              </select>
+              <label class="field" style="margin-top:10px;">Volume: <span id="m-vol-val">60</span>%</label>
+              <input type="range" id="m-vol" min="0" max="100" value="60" />
+            </div>
+            <div class="card">
+              <h3>Tracks <button class="btn btn-primary btn-sm" id="add-track-btn" style="float:right;">+ Add</button></h3>
+              <div id="tracks-list"></div>
+            </div>
+          </section>
+
+          <!-- TEXTS -->
+          <section class="panel-section" id="panel-texts">
+            <div class="card">
+              <h3>Text Blocks <button class="btn btn-primary btn-sm" id="add-text-btn" style="float:right;">+ Add</button></h3>
+              <p style="font-size:0.8rem;color:var(--admin-muted);margin-bottom:12px;">می‌توانید ترتیب را با drag تغییر دهید (به زودی کامل‌تر).</p>
+              <div id="texts-list"></div>
+            </div>
+          </section>
+
+          <!-- SOCIAL -->
+          <section class="panel-section" id="panel-social">
+            <div class="card">
+              <h3>Social Links <button class="btn btn-primary btn-sm" id="add-social-btn" style="float:right;">+ Custom</button></h3>
+              <div id="social-list"></div>
+            </div>
+          </section>
+
+          <!-- THEME -->
+          <section class="panel-section" id="panel-theme">
+            <div class="card">
+              <h3>Preset</h3>
+              <select id="th-preset">
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="glass">Glass</option>
+                <option value="neon">Neon</option>
+                <option value="minimal">Minimal</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+            <div class="card">
+              <h3>Colors</h3>
+              <div class="grid-2">
+                <div><label class="field">Primary</label><input type="color" id="th-primary" /></div>
+                <div><label class="field">Secondary</label><input type="color" id="th-secondary" /></div>
+                <div><label class="field">Accent</label><input type="color" id="th-accent" /></div>
+                <div><label class="field">Background</label><input type="color" id="th-bg" /></div>
+                <div><label class="field">Text</label><input type="color" id="th-text" /></div>
+                <div><label class="field">Glow</label><input type="color" id="th-glow" /></div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Style</h3>
+              <label class="field">Border Radius: <span id="th-radius-val">16</span>px</label>
+              <input type="range" id="th-radius" min="0" max="32" value="16" />
+              <label class="field">Blur: <span id="th-blur-val">20</span>px</label>
+              <input type="range" id="th-blur" min="0" max="40" value="20" />
+            </div>
+          </section>
+
+          <!-- EFFECTS -->
+          <section class="panel-section" id="panel-effects">
+            <div class="card">
+              <div class="switch-row"><span>Particles / Stars</span><label class="switch"><input type="checkbox" id="ef-particles" /><span class="slider"></span></label></div>
+              <div class="switch-row"><span>Glow effects</span><label class="switch"><input type="checkbox" id="ef-glow" /><span class="slider"></span></label></div>
+              <div class="switch-row"><span>Page Transition</span><label class="switch"><input type="checkbox" id="ef-transition" /><span class="slider"></span></label></div>
+              <div class="switch-row"><span>Performance Mode</span><label class="switch"><input type="checkbox" id="ef-perf" /><span class="slider"></span></label></div>
+            </div>
+          </section>
+
+          <!-- SEO -->
+          <section class="panel-section" id="panel-seo">
+            <div class="card">
+              <label class="field">Page Title</label>
+              <input type="text" id="seo-title" />
+              <label class="field" style="margin-top:10px;">Description</label>
+              <textarea id="seo-desc" rows="2"></textarea>
+              <label class="field" style="margin-top:10px;">Keywords</label>
+              <input type="text" id="seo-keywords" />
+              <label class="field" style="margin-top:10px;">OG Image URL</label>
+              <input type="url" id="seo-og" />
+            </div>
+          </section>
+
+          <!-- CUSTOM CSS -->
+          <section class="panel-section" id="panel-customcss">
+            <div class="card">
+              <h3>Custom CSS</h3>
+              <p style="font-size:0.8rem;color:var(--admin-muted);margin-bottom:10px;">این CSS روی صفحه عمومی اعمال می‌شود.</p>
+              <textarea id="custom-css" rows="14" style="font-family:monospace;font-size:0.85rem;" placeholder=".profile-card { ... }"></textarea>
+            </div>
+          </section>
+
+          <!-- SETTINGS -->
+          <section class="panel-section" id="panel-settings">
+            <div class="card">
+              <div class="switch-row"><span>Show Status</span><label class="switch"><input type="checkbox" id="set-status" /><span class="slider"></span></label></div>
+              <div class="switch-row"><span>Show Location</span><label class="switch"><input type="checkbox" id="set-location" /><span class="slider"></span></label></div>
+              <div class="switch-row"><span>Show Badges</span><label class="switch"><input type="checkbox" id="set-badges" /><span class="slider"></span></label></div>
+            </div>
+            <div class="card">
+              <h3>Reset</h3>
+              <button class="btn btn-danger btn-sm" id="reset-all-btn">Reset Everything</button>
+            </div>
+          </section>
+
+          <!-- EXPORT -->
+          <section class="panel-section" id="panel-export">
+            <div class="card">
+              <h3>Export Configuration</h3>
+              <p style="font-size:0.85rem;color:var(--admin-muted);margin-bottom:12px;">تمام تنظیمات را به صورت JSON دانلود کنید.</p>
+              <button class="btn btn-primary" id="export-btn">📥 Export JSON</button>
+            </div>
+            <div class="card">
+              <h3>Import Configuration</h3>
+              <p style="font-size:0.85rem;color:var(--admin-muted);margin-bottom:12px;">فایل JSON قبلی را بارگذاری کنید.</p>
+              <input type="file" id="import-file" accept=".json" />
+              <button class="btn btn-ghost" style="margin-top:10px;" id="import-btn">Upload & Apply</button>
+            </div>
+          </section>
+        </div>
+
+        <!-- Live Preview -->
+        <div class="preview-area" id="preview-area">
+          <div class="preview-header">
+            <span>Live Preview</span>
+            <button class="btn btn-ghost btn-sm" id="refresh-preview">↻</button>
+          </div>
+          <div class="preview-frame">
+            <iframe id="preview-iframe" src="index.html"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Nav (Mobile) -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <button data-panel="overview" class="active">📊<span>Home</span></button>
+    <button data-panel="profile">👤<span>Profile</span></button>
+    <button data-panel="theme">🎨<span>Theme</span></button>
+    <button data-panel="music">🎵<span>Music</span></button>
+    <button id="mobile-preview-btn">👁<span>Preview</span></button>
+  </nav>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <h3 id="modal-title">تأیید</h3>
+      <p id="modal-text">آیا مطمئن هستید؟</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="modal-cancel">Cancel</button>
+        <button class="btn btn-danger" id="modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

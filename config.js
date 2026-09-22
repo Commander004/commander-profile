@@ -1,0 +1,145 @@
+/**
+ * Commander Profile - Configuration
+ * پسورد و تنظیمات اولیه اینجا قرار می‌گیرند.
+ * بعد از Deploy، این فایل را ویرایش کن و username/password خودت را بگذار.
+ */
+
+const ADMIN_CONFIG = {
+  username: "commander",
+  password: "commander123"   // ← حتماً عوض کن
+};
+
+// تنظیمات پیش‌فرض سایت (اگر localStorage خالی باشد از این استفاده می‌شود)
+const DEFAULT_CONFIG = {
+  profile: {
+    avatar: "https://avatars.githubusercontent.com/u/289800352?v=4",
+    username: "Commander004",
+    displayName: "Commander",
+    bio: "Full-stack developer & digital craftsman.\nBuilding beautiful experiences.",
+    location: "Iran",
+    status: "Online",
+    pronouns: "",
+    verified: true,
+    customBadge: "DEV",
+    avatarShape: "circle",      // circle | rounded | square
+    avatarSize: 120,
+    avatarBorder: true,
+    avatarGlow: true,
+    avatarAnimation: "none"     // none | pulse | float | spin
+  },
+
+  background: {
+    type: "gradient",           // solid | gradient | image | gif | video
+    solid: "#0a0a0f",
+    gradient: "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%)",
+    image: "",
+    video: "",
+    blur: 0,
+    brightness: 100,
+    contrast: 100,
+    opacity: 100,
+    position: "center",
+    size: "cover",
+    overlay: "rgba(0,0,0,0.4)",
+    overlayOpacity: 40
+  },
+
+  music: {
+    enabled: true,
+    autoplay: false,
+    loop: true,
+    volume: 0.6,
+    shuffle: false,
+    style: "glass",             // minimal | glass | compact | full | floating
+    tracks: [
+      {
+        title: "Night Drive",
+        artist: "Lo-Fi Beats",
+        cover: "",
+        url: ""                 // URL یا مسیر فایل داخل assets/music/
+      }
+    ]
+  },
+
+  texts: [
+    {
+      id: "t1",
+      text: "Welcome to my digital space",
+      font: "Inter",
+      fontSize: 18,
+      fontWeight: 500,
+      color: "#e0e0e0",
+      gradient: false,
+      letterSpacing: 0.5,
+      lineHeight: 1.5,
+      align: "center",
+      shadow: false,
+      glow: false,
+      opacity: 100,
+      background: "transparent",
+      border: "none",
+      borderRadius: 0,
+      padding: 8,
+      margin: 4,
+      animation: "fade"
+    }
+  ],
+
+  social: [
+    { id: "s1", title: "GitHub", url: "https://github.com/Commander004", icon: "github", color: "#fff", bg: "rgba(255,255,255,0.08)", visible: true },
+    { id: "s2", title: "Telegram", url: "https://t.me/", icon: "telegram", color: "#29b6f6", bg: "rgba(41,182,246,0.15)", visible: true },
+    { id: "s3", title: "Discord", url: "", icon: "discord", color: "#7289da", bg: "rgba(114,137,218,0.15)", visible: false },
+    { id: "s4", title: "X", url: "", icon: "x", color: "#fff", bg: "rgba(255,255,255,0.08)", visible: false },
+    { id: "s5", title: "Instagram", url: "", icon: "instagram", color: "#e1306c", bg: "rgba(225,48,108,0.15)", visible: false },
+    { id: "s6", title: "YouTube", url: "", icon: "youtube", color: "#ff0000", bg: "rgba(255,0,0,0.15)", visible: false },
+    { id: "s7", title: "Spotify", url: "", icon: "spotify", color: "#1db954", bg: "rgba(29,185,84,0.15)", visible: false },
+    { id: "s8", title: "Twitch", url: "", icon: "twitch", color: "#9146ff", bg: "rgba(145,70,255,0.15)", visible: false }
+  ],
+
+  theme: {
+    preset: "dark",
+    primary: "#7c5cff",
+    secondary: "#00d4ff",
+    accent: "#ff6b9d",
+    background: "#0a0a0f",
+    text: "#f0f0f5",
+    card: "rgba(255,255,255,0.06)",
+    border: "rgba(255,255,255,0.1)",
+    glow: "#7c5cff",
+    button: "#7c5cff",
+    borderRadius: 16,
+    blur: 20,
+    shadow: "0 8px 32px rgba(0,0,0,0.4)",
+    cardOpacity: 0.85
+  },
+
+  effects: {
+    cursor: false,
+    particles: false,
+    stars: false,
+    snow: false,
+    glow: true,
+    clickEffect: false,
+    pageTransition: true,
+    reducedMotion: false
+  },
+
+  seo: {
+    title: "Commander | Personal Profile",
+    description: "Personal digital space of Commander004",
+    keywords: "profile, developer, commander",
+    ogTitle: "Commander",
+    ogDescription: "My digital presence",
+    ogImage: "",
+    favicon: ""
+  },
+
+  customCSS: "",
+
+  settings: {
+    showStatus: true,
+    showLocation: true,
+    showBadges: true,
+    performanceMode: false
+  }
+};
