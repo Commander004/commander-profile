@@ -454,8 +454,18 @@
         <input type="text" data-track="${i}" data-field="title" value="${esc(t.title)}" />
         <label class="field">Artist</label>
         <input type="text" data-track="${i}" data-field="artist" value="${esc(t.artist)}" />
-        <label class="field">Audio URL</label>
-        <input type="url" data-track="${i}" data-field="url" value="${esc(t.url)}" placeholder="https://... or assets/music/..." />
+        <label class="field">Audio URL یا مسیر فایل</label>
+        <input type="text" data-track="${i}" data-field="url" value="${esc(t.url)}" placeholder="https://... یا assets/music/song.mp3" />
+        <div style="margin:8px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <label class="btn btn-ghost btn-sm" style="cursor:pointer;margin:0;">
+            📂 انتخاب از دستگاه
+            <input type="file" accept="audio/*" data-file-track="${i}" style="display:none;" />
+          </label>
+          <span style="font-size:0.75rem;color:var(--admin-muted);" data-file-name="${i}"></span>
+        </div>
+        <p style="font-size:0.72rem;color:var(--admin-muted);margin:0 0 8px;">
+          برای دائمی شدن: فایل را در <code>assets/music/</code> بگذار و مسیر را بنویس (مثلاً assets/music/track1.mp3)
+        </p>
         <label class="field">Cover URL</label>
         <input type="url" data-track="${i}" data-field="cover" value="${esc(t.cover)}" />
       `;
@@ -475,6 +485,30 @@
         config.music.tracks[i][inp.dataset.field] = inp.value;
         collectConfig();
         refreshPreview();
+      };
+    });
+    // Local file picker → blob URL for preview
+    list.querySelectorAll("[data-file-track]").forEach(fileInp => {
+      fileInp.onchange = () => {
+        const i = +fileInp.dataset.fileTrack;
+        const file = fileInp.files && fileInp.files[0];
+        if (!file) return;
+        const blobUrl = URL.createObjectURL(file);
+        config.music.tracks[i].url = blobUrl;
+        // Auto-fill title from filename if empty
+        if (!config.music.tracks[i].title || config.music.tracks[i].title === "New Track") {
+          config.music.tracks[i].title = file.name.replace(/\.[^/.]+$/, "");
+        }
+        const nameSpan = list.querySelector(`[data-file-name="${i}"]`);
+        if (nameSpan) nameSpan.textContent = file.name + " (موقت — برای دائمی در assets بگذار)";
+        // Update the URL input visually
+        const urlInp = list.querySelector(`input[data-track="${i}"][data-field="url"]`);
+        if (urlInp) urlInp.value = blobUrl;
+        const titleInp = list.querySelector(`input[data-track="${i}"][data-field="title"]`);
+        if (titleInp) titleInp.value = config.music.tracks[i].title;
+        collectConfig();
+        refreshPreview();
+        toast("فایل انتخاب شد — فقط برای پیش‌نمایش. برای دائمی در assets/music بگذار");
       };
     });
   }

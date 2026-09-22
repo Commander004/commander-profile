@@ -252,12 +252,28 @@
       }
     };
 
-    if (m.autoplay) {
+    // Autoplay — try immediately; if browser blocks, unlock on first user gesture
+    function tryAutoplay() {
+      if (!m.autoplay || playing) return;
       audio.play().then(() => {
         playing = true;
         document.getElementById("play-btn").textContent = "⏸";
-      }).catch(() => {});
+      }).catch(() => {
+        const unlock = () => {
+          audio.play().then(() => {
+            playing = true;
+            document.getElementById("play-btn").textContent = "⏸";
+          }).catch(() => {});
+          document.removeEventListener("click", unlock);
+          document.removeEventListener("touchstart", unlock);
+          document.removeEventListener("keydown", unlock);
+        };
+        document.addEventListener("click", unlock, { once: true });
+        document.addEventListener("touchstart", unlock, { once: true });
+        document.addEventListener("keydown", unlock, { once: true });
+      });
     }
+    tryAutoplay();
   }
 
   function initParticles(effects) {

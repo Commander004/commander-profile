@@ -46,7 +46,7 @@ const DEFAULT_CONFIG = {
 
   music: {
     enabled: true,
-    autoplay: false,
+    autoplay: true,
     loop: true,
     volume: 0.6,
     shuffle: false,
