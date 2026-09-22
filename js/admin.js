@@ -90,9 +90,14 @@
     setVal("p-badge", p.customBadge);
 
     const bg = config.background;
-    setVal("bg-type", bg.type);
-    setVal("bg-solid", bg.solid);
-    setVal("bg-gradient", bg.gradient);
+    // UI only has default | upload — map internal types
+    const uiType = (bg.type === "image" || bg.type === "gif" || bg.type === "video") ? "upload" : "default";
+    setVal("bg-type", uiType);
+    if (bg.type === "image" || bg.type === "gif" || bg.type === "video") {
+      setVal("bg-media-kind", bg.type);
+    } else {
+      setVal("bg-media-kind", "image");
+    }
     setVal("bg-image", bg.image);
     setVal("bg-video", bg.video);
     setVal("bg-blur", bg.blur);
@@ -101,6 +106,7 @@
     setVal("bg-ov", bg.overlayOpacity);
     setVal("bg-overlay", bg.overlay);
     updateRangeLabels();
+    toggleBgCards();
     toggleBgCards();
 
     const m = config.music;
@@ -181,11 +187,14 @@
       customBadge: getVal("p-badge")
     };
 
+    const uiBgType = getVal("bg-type"); // default | upload
+    let realType = "default";
+    if (uiBgType === "upload") {
+      realType = getVal("bg-media-kind") || "image"; // image | gif | video
+    }
     config.background = {
       ...config.background,
-      type: getVal("bg-type"),
-      solid: getVal("bg-solid"),
-      gradient: getVal("bg-gradient"),
+      type: realType,
       image: getVal("bg-image"),
       video: getVal("bg-video"),
       blur: parseInt(getVal("bg-blur")) || 0,
@@ -259,6 +268,12 @@
       });
     });
 
+    // Background type / media-kind changes
+    const bgTypeEl = document.getElementById("bg-type");
+    const bgKindEl = document.getElementById("bg-media-kind");
+    if (bgTypeEl) bgTypeEl.addEventListener("change", () => { toggleBgCards(); collectConfig(); refreshPreview(); });
+    if (bgKindEl) bgKindEl.addEventListener("change", () => { toggleBgCards(); collectConfig(); refreshPreview(); });
+
     // Background file picker (local preview)
     const bgFile = document.getElementById("bg-file");
     if (bgFile) {
@@ -266,39 +281,42 @@
         const file = bgFile.files && bgFile.files[0];
         if (!file) return;
 
-        const type = getVal("bg-type");
-        const isVideo = type === "video" || file.type.startsWith("video/");
+        const kind = getVal("bg-media-kind") || "image";
+        const isVideo = kind === "video" || file.type.startsWith("video/");
+
+        // Force upload mode
+        setVal("bg-type", "upload");
 
         if (isVideo) {
-          // Video: only Object URL for preview + remind user to put in assets
+          setVal("bg-media-kind", "video");
           const url = URL.createObjectURL(file);
           setVal("bg-video", url);
           config.background.video = url;
           config.background.type = "video";
-          toast("ویدیو برای پیش‌نمایش لود شد. برای دائمی شدن، فایل را در assets/videos بگذار و مسیر نسبی وارد کن.");
-          // Show size warning
+          toggleBgCards();
+
           const sizeMB = (file.size / (1024 * 1024)).toFixed(1);
-          if (file.size > 12 * 1024 * 1024) {
-            toast("⚠️ حجم ویدیو " + sizeMB + "MB است — بهتر است زیر ۱۰MB باشد");
+          if (file.size > 10 * 1024 * 1024) {
+            toast("⚠️ حجم ویدیو " + sizeMB + "MB — بهتر است زیر ۱۰MB و رزولوشن 1920×1080 یا 1280×720 باشد");
+          } else {
+            toast("ویدیو برای پیش‌نمایش لود شد. برای دائمی: فایل را در assets/videos بگذار");
           }
         } else {
-          // Image / GIF → base64 for persistence in localStorage (ok for reasonable sizes)
+          const isGif = file.type === "image/gif" || kind === "gif";
+          setVal("bg-media-kind", isGif ? "gif" : "image");
           if (file.size > 4 * 1024 * 1024) {
-            toast("حجم فایل زیاد است (" + (file.size / 1024 / 1024).toFixed(1) + "MB). بهتر است زیر ۲–۳MB باشد یا از URL استفاده کن.");
+            toast("حجم زیاد (" + (file.size / 1024 / 1024).toFixed(1) + "MB) — بهتر است زیر ۲–۳MB باشد");
           }
           const reader = new FileReader();
           reader.onload = (e) => {
             const dataUrl = e.target.result;
             setVal("bg-image", dataUrl);
             config.background.image = dataUrl;
-            if (type !== "gif" && type !== "image") {
-              config.background.type = file.type === "image/gif" ? "gif" : "image";
-              setVal("bg-type", config.background.type);
-              toggleBgCards();
-            }
+            config.background.type = isGif ? "gif" : "image";
+            toggleBgCards();
             collectConfig();
             refreshPreview();
-            toast("تصویر برای پیش‌نمایش و ذخیره لود شد");
+            toast("فایل برای پیش‌نمایش لود شد");
           };
           reader.readAsDataURL(file);
           return;
@@ -380,35 +398,27 @@
   }
 
   function toggleBgCards() {
-    const type = getVal("bg-type");
-    const isMedia = ["image", "gif", "video"].includes(type);
-    const isVideo = type === "video";
+    const uiType = getVal("bg-type"); // default | upload
+    const kind = getVal("bg-media-kind") || "image"; // image | gif | video
+    const isUpload = uiType === "upload";
+    const isVideo = isUpload && kind === "video";
 
-    document.getElementById("bg-solid-card").style.display = type === "solid" ? "block" : "none";
-    document.getElementById("bg-gradient-card").style.display = type === "gradient" ? "block" : "none";
-    document.getElementById("bg-media-card").style.display = isMedia ? "block" : "none";
+    const mediaCard = document.getElementById("bg-media-card");
+    if (mediaCard) mediaCard.style.display = isUpload ? "block" : "none";
 
-    // Image vs Video fields
     const imgWrap = document.getElementById("bg-image-wrap");
     const vidWrap = document.getElementById("bg-video-wrap");
     const vidWarn = document.getElementById("bg-video-warning");
-    const mediaTitle = document.getElementById("bg-media-title");
     const fileInput = document.getElementById("bg-file");
 
     if (imgWrap) imgWrap.style.display = isVideo ? "none" : "block";
     if (vidWrap) vidWrap.style.display = isVideo ? "block" : "none";
     if (vidWarn) vidWarn.style.display = isVideo ? "block" : "none";
 
-    if (mediaTitle) {
-      if (type === "image") mediaTitle.textContent = "آپلود یا لینک عکس";
-      else if (type === "gif") mediaTitle.textContent = "آپلود یا لینک GIF";
-      else if (type === "video") mediaTitle.textContent = "آپلود یا لینک ویدیو";
-      else mediaTitle.textContent = "آپلود یا لینک رسانه";
-    }
-
     if (fileInput) {
       if (isVideo) fileInput.accept = "video/mp4,video/webm,video/*";
-      else fileInput.accept = "image/*,.gif,image/gif";
+      else if (kind === "gif") fileInput.accept = "image/gif,.gif";
+      else fileInput.accept = "image/*,.jpg,.jpeg,.png,.webp";
     }
   }
 

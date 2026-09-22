@@ -160,65 +160,54 @@
             <div class="card">
               <h3>نوع پس‌زمینه</h3>
               <select id="bg-type">
-                <option value="default">Default (پیش‌فرض)</option>
-                <option value="solid">Solid Color</option>
-                <option value="gradient">Gradient</option>
-                <option value="image">Image / عکس</option>
-                <option value="gif">GIF</option>
-                <option value="video">Video / ویدیو</option>
+                <option value="default">۱. Default (پیش‌فرض)</option>
+                <option value="upload">۲. آپلود (عکس / GIF / ویدیو)</option>
               </select>
-              <p style="font-size:0.78rem;color:var(--admin-muted);margin-top:10px;line-height:1.5;">
-                <strong>Default</strong> = وقتی چیزی تنظیم نکردی، از گرادیانتم تم استفاده می‌شود.<br>
-                برای عکس / GIF / ویدیو گزینه مربوطه را انتخاب کن و فایل یا URL بده.
+              <p style="font-size:0.8rem;color:var(--admin-muted);margin-top:12px;line-height:1.55;">
+                <strong>Default</strong> → وقتی چیزی تنظیم نکردی، گرادیانتم تیره پیش‌فرض نمایش داده می‌شود.<br>
+                <strong>آپلود</strong> → عکس، GIF یا ویدیو از دستگاه یا با URL.
               </p>
             </div>
 
-            <div class="card" id="bg-solid-card" style="display:none;">
-              <h3>Solid Color</h3>
-              <input type="color" id="bg-solid" />
-            </div>
-
-            <div class="card" id="bg-gradient-card" style="display:none;">
-              <h3>Gradient CSS</h3>
-              <textarea id="bg-gradient" rows="2" placeholder="linear-gradient(135deg, #0a0a0f, #1a1a2e)"></textarea>
-            </div>
-
-            <!-- Media: Image / GIF / Video -->
+            <!-- Upload panel -->
             <div class="card" id="bg-media-card" style="display:none;">
-              <h3 id="bg-media-title">آپلود یا لینک رسانه</h3>
+              <h3>انتخاب نوع رسانه</h3>
+              <select id="bg-media-kind" style="margin-bottom:14px;">
+                <option value="image">عکس (Image)</option>
+                <option value="gif">GIF</option>
+                <option value="video">ویدیو (Video)</option>
+              </select>
 
-              <!-- File picker -->
               <label class="field">انتخاب فایل از دستگاه</label>
-              <input type="file" id="bg-file" accept="image/*,video/mp4,video/webm,.gif" style="margin-bottom:12px;" />
+              <input type="file" id="bg-file" accept="image/*,.gif,video/mp4,video/webm" style="margin-bottom:12px;" />
 
-              <!-- Image / GIF URL -->
               <div id="bg-image-wrap">
-                <label class="field">یا URL تصویر / GIF</label>
-                <input type="url" id="bg-image" placeholder="https://... یا assets/images/bg.jpg" />
+                <label class="field">یا URL / مسیر فایل</label>
+                <input type="url" id="bg-image" placeholder="assets/images/bg.jpg یا https://..." />
               </div>
 
-              <!-- Video URL -->
               <div id="bg-video-wrap" style="display:none;">
                 <label class="field">یا URL / مسیر ویدیو</label>
                 <input type="url" id="bg-video" placeholder="assets/videos/bg.mp4 یا https://..." />
               </div>
 
-              <!-- Video requirements warning -->
-              <div id="bg-video-warning" style="display:none;margin-top:14px;padding:12px 14px;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);border-radius:10px;font-size:0.82rem;line-height:1.55;color:#fca5a5;">
-                <strong>⚠️ الزامات ویدیو پس‌زمینه:</strong><br>
-                • رزولوشن توصیه‌شده: <strong>1920×1080</strong> یا بهتر <strong>1280×720</strong><br>
-                • حداکثر پیشنهاد: <strong>1920×1080</strong> (Full HD)<br>
-                • فرمت: <strong>MP4 (H.264)</strong> یا WebM<br>
-                • حجم ایده‌آل: کمتر از <strong>۸–۱۰ مگابایت</strong><br>
-                • حتماً فایل را داخل پوشه <code>assets/videos/</code> بگذار و مسیر نسبی وارد کن<br>
-                • ویدیوهای خیلی بزرگ روی موبایل کند می‌شوند
+              <!-- Video requirements — always clear -->
+              <div id="bg-video-warning" style="display:none;margin-top:14px;padding:14px 16px;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.4);border-radius:12px;font-size:0.84rem;line-height:1.65;color:#fca5a5;">
+                <strong style="font-size:0.95rem;">⚠️ الزامات ویدیو پس‌زمینه (حتماً رعایت کن):</strong><br><br>
+                • رزولوشن پیشنهادی: <strong>1920 × 1080</strong> (Full HD)<br>
+                • یا برای موبایل سبک‌تر: <strong>1280 × 720</strong><br>
+                • نسبت تصویر: <strong>۱۶:۹</strong><br>
+                • فرمت: <strong>MP4 (H.264)</strong> — ترجیحاً<br>
+                • حجم ایده‌آل: کمتر از <strong>۸ تا ۱۰ مگابایت</strong><br>
+                • ویدیوهای خیلی بزرگ روی موبایل کند یا داغ می‌کنند<br><br>
+                <span style="opacity:0.9;">فایل را داخل پوشه <code>assets/videos/</code> بگذار و مسیر نسبی وارد کن<br>
+                (مثال: <code>assets/videos/my-bg.mp4</code>)</span>
               </div>
 
-              <p style="font-size:0.75rem;color:var(--admin-muted);margin-top:12px;line-height:1.5;">
-                <strong>نکته GitHub Pages:</strong> آپلود مستقیم به سرور وجود ندارد.
-                فایل را داخل ریپو (<code>assets/images/</code> یا <code>assets/videos/</code>) قرار بده،
-                بعد مسیر نسبی (مثل <code>assets/videos/mybg.mp4</code>) را وارد کن، یا از URL خارجی استفاده کن.
-                برای پیش‌نمایش فوری می‌توانی فایل را از دستگاه انتخاب کنی.
+              <p style="font-size:0.75rem;color:var(--admin-muted);margin-top:14px;line-height:1.55;">
+                <strong>نکته GitHub Pages:</strong> آپلود مستقیم به سرور نیست.
+                فایل را در ریپو بگذار (<code>assets/images/</code> یا <code>assets/videos/</code>)،
+                بعد مسیر نسبی را وارد کن. برای پیش‌نمایش فوری می‌توانی از «انتخاب فایل» استفاده کنی.
               </p>
             </div>
 
