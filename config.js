@@ -29,7 +29,7 @@ const DEFAULT_CONFIG = {
   },
 
   background: {
-    type: "gradient",           // solid | gradient | image | gif | video
+    type: "default",            // default | solid | gradient | image | gif | video
     solid: "#0a0a0f",
     gradient: "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%)",
     image: "",

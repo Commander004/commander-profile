@@ -126,21 +126,28 @@
     media.innerHTML = "";
     media.style.background = "";
     media.style.filter = "";
+    media.style.opacity = "1";
 
-    if (bg.type === "solid") {
+    const type = bg.type || "default";
+
+    if (type === "default" || (!bg.image && !bg.video && type !== "solid" && type !== "gradient")) {
+      // Default: theme-based gradient
+      media.style.background = bg.gradient ||
+        "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%)";
+    } else if (type === "solid") {
       media.style.background = bg.solid || "#0a0a0f";
-    } else if (bg.type === "gradient") {
-      media.style.background = bg.gradient || "linear-gradient(135deg,#0a0a0f,#1a1a2e)";
-    } else if (bg.type === "image" || bg.type === "gif") {
-      if (bg.image) {
-        const img = document.createElement("img");
-        img.src = bg.image;
-        img.className = "bg-media";
-        img.style.objectFit = bg.size || "cover";
-        img.style.objectPosition = bg.position || "center";
-        media.appendChild(img);
-      }
-    } else if (bg.type === "video" && bg.video) {
+    } else if (type === "gradient") {
+      media.style.background = bg.gradient ||
+        "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%)";
+    } else if ((type === "image" || type === "gif") && bg.image) {
+      const img = document.createElement("img");
+      img.src = bg.image;
+      img.className = "bg-media";
+      img.alt = "";
+      img.style.objectFit = bg.size || "cover";
+      img.style.objectPosition = bg.position || "center";
+      media.appendChild(img);
+    } else if (type === "video" && bg.video) {
       const vid = document.createElement("video");
       vid.src = bg.video;
       vid.autoplay = true;
@@ -149,6 +156,9 @@
       vid.playsInline = true;
       vid.className = "bg-media";
       media.appendChild(vid);
+    } else {
+      // Fallback to default
+      media.style.background = "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%)";
     }
 
     const filters = [];
@@ -156,10 +166,12 @@
     if (bg.brightness !== undefined && bg.brightness !== 100) filters.push(`brightness(${bg.brightness}%)`);
     if (bg.contrast !== undefined && bg.contrast !== 100) filters.push(`contrast(${bg.contrast}%)`);
     media.style.filter = filters.join(" ") || "none";
-    media.style.opacity = (bg.opacity || 100) / 100;
+    if (type !== "default") {
+      media.style.opacity = (bg.opacity || 100) / 100;
+    }
 
     overlay.style.background = bg.overlay || "rgba(0,0,0,0.4)";
-    overlay.style.opacity = (bg.overlayOpacity || 40) / 100;
+    overlay.style.opacity = (bg.overlayOpacity != null ? bg.overlayOpacity : 40) / 100;
   }
 
   function getSocialIcon(name) {
