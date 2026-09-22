@@ -11,8 +11,9 @@
 - **صفحه عمومی** (`index.html`) — پروفایل، بایو، سوشال، موزیک پلیر، متن‌های سفارشی، پس‌زمینه
 - **پنل ادمین** (`admin.html`) — لاگین + داشبورد کامل
 - **Live Preview** — هر تغییری همان لحظه در پیش‌نمایش دیده می‌شود
-- **ذخیره‌سازی Client-Side** با `localStorage`
-- **Export / Import JSON** برای بکاپ و انتقال تنظیمات
+- **Publish برای عموم** با فایل `config.json` (دانلود از ادمین → آپلود در ریپو)
+- **Live Preview** با localStorage (فقط برای ویرایش)
+- **Export / Import JSON** برای بکاپ شخصی
 - **Theme Editor** کامل (رنگ‌ها، blur، radius، presetها)
 - **Background** : Solid / Gradient / Image / GIF / Video
 - **Music Player** زیبا با چند ترک، استایل‌های مختلف
@@ -32,6 +33,7 @@
 ├── index.html          # صفحه عمومی پروفایل
 ├── admin.html          # پنل ادمین + لاگین
 ├── config.js           # تنظیمات پیش‌فرض + Username/Password
+├── config.json         # تنظیمات منتشرشده برای عموم (Publish)
 ├── css/
 │   ├── main.css
 │   └── admin.css
@@ -40,9 +42,9 @@
 │   ├── profile.js
 │   └── admin.js
 ├── assets/
-│   ├── images/
+│   ├── image/
 │   ├── music/
-│   └── videos/
+│   └── video/
 └── README.md
 ```
 
@@ -144,17 +146,34 @@ https://COMMANDER004.github.io/commander-profile/
 ### ۸. Custom CSS
 - هر CSS دلخواهی بنویس → روی صفحه عمومی اعمال می‌شود
 
-### ۹. Save
-- دکمه **Save** را بزن تا در `localStorage` ذخیره شود
-- برای بکاپ دائمی از **Export JSON** استفاده کن
+### ۹. Save vs Publish
+- **Save** → فقط روی مرورگر خودت (`localStorage`) — برای ویرایش و Preview
+- **Publish** → فایل `config.json` دانلود می‌شود → آن را در ریشه ریپو بگذار و Commit کن → **همه بازدیدکننده‌ها** تنظیمات جدید را می‌بینند
 
 ---
 
-## 📤 Export / Import
+## 🚀 Publish برای عموم (مهم)
 
-- **Export**: تمام تنظیمات فعلی را به صورت یک فایل `.json` دانلود می‌کند.
-- **Import**: همان فایل را دوباره آپلود کن تا تنظیمات برگردد.
-- این روش بهترین راه برای بکاپ و انتقال بین دستگاه‌هاست (چون localStorage فقط روی همان مرورگر است).
+هر بار که ظاهر سایت را برای همه تغییر دادی:
+
+1. وارد **Admin** شو و تنظیمات را انجام بده
+2. دکمه **📤 Publish** را بزن (بالای صفحه یا بخش Export)
+3. فایل **`config.json`** دانلود می‌شود
+4. در GitHub → ریپو → **Add file → Upload files**
+5. `config.json` را در **ریشه** (کنار `index.html`) بگذار / جایگزین کن
+6. **Commit changes** بزن
+
+بعد از ۱–۲ دقیقه صفحه عمومی (`index.html`) تنظیمات جدید را از `config.json` می‌خواند.
+
+> Live Preview داخل ادمین از localStorage استفاده می‌کند و نیازی به Publish ندارد.
+
+---
+
+## 📤 Export / Import (بکاپ شخصی)
+
+- **Export**: بکاپ با نام تاریخ‌دار (آرشیو شخصی)
+- **Import**: بازگرداندن تنظیمات روی همین مرورگر
+- برای **عموم** همیشه از **Publish → config.json** استفاده کن
 
 ---
 
@@ -162,7 +181,7 @@ https://COMMANDER004.github.io/commander-profile/
 
 1. **رمز عبور Client-Side است** — هرکسی که سورس را ببیند می‌تواند آن را پیدا کند. برای استفاده شخصی مشکلی نیست.
 2. **آپلود فایل مستقیم در GitHub Pages وجود ندارد** — فایل‌های تصویر/موزیک/ویدیو را داخل ریپو بگذار یا از URL خارجی استفاده کن.
-3. **localStorage** روی هر مرورگر جدا است. برای اشتراک‌گذاری ظاهر، از Export/Import استفاده کن یا تنظیمات را در `config.js` (DEFAULT_CONFIG) قرار بده.
+3. **Save فقط برای خودت است** — برای عموم حتماً `config.json` را Publish و Commit کن.
 4. برای Performance بهتر روی موبایل، Performance Mode را در Effects روشن کن و از ویدیوهای سنگین پرهیز کن.
 
 ---

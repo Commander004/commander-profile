@@ -1,9 +1,12 @@
 /**
  * Storage & Config Manager
- * localStorage + Export / Import
+ * - Admin: localStorage (live edit)
+ * - Public: config.json from repo (published settings)
+ * - Export / Import / Publish
  */
 
 const STORAGE_KEY = "commander_profile_v1";
+const PUBLIC_CONFIG_URL = "config.json";
 
 function getConfig() {
   try {
@@ -14,6 +17,23 @@ function getConfig() {
     }
   } catch (e) {
     console.warn("Failed to load config", e);
+  }
+  return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+}
+
+/**
+ * Public page: load published config.json first, fall back to DEFAULT_CONFIG.
+ * Does NOT use localStorage so visitors always see what you published.
+ */
+async function loadPublicConfig() {
+  try {
+    const res = await fetch(PUBLIC_CONFIG_URL + "?t=" + Date.now(), { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      return deepMerge(JSON.parse(JSON.stringify(DEFAULT_CONFIG)), data);
+    }
+  } catch (e) {
+    console.warn("config.json not found or invalid, using defaults", e);
   }
   return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
 }
@@ -35,11 +55,21 @@ function resetConfig() {
 
 function exportConfig() {
   const config = getConfig();
-  const blob = new Blob([JSON.stringify(config, null, 2)], { type: "application/json" });
+  downloadJSON(config, `commander-profile-backup-${new Date().toISOString().slice(0, 10)}.json`);
+}
+
+/** Publish: download as config.json — commit this file to the repo root for public site */
+function publishConfig(config) {
+  const data = config || getConfig();
+  downloadJSON(data, "config.json");
+}
+
+function downloadJSON(obj, filename) {
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `commander-profile-${new Date().toISOString().slice(0,10)}.json`;
+  a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
 }

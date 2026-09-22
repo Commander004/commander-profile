@@ -344,6 +344,17 @@
       toast("Exported");
     };
 
+    function doPublish() {
+      collectConfig();
+      saveConfig(config);
+      publishConfig(config);
+      toast("config.json دانلود شد — در ریشه ریپو آپلود و Commit کن");
+    }
+    const pubBtn = document.getElementById("publish-btn");
+    const pubTop = document.getElementById("publish-top-btn");
+    if (pubBtn) pubBtn.onclick = doPublish;
+    if (pubTop) pubTop.onclick = doPublish;
+
     document.getElementById("import-btn").onclick = () => {
       const file = document.getElementById("import-file").files[0];
       if (!file) return toast("Select a file first");
@@ -633,9 +644,9 @@
   // ========== PREVIEW ==========
   function refreshPreview() {
     const iframe = document.getElementById("preview-iframe");
-    // Force reload so it reads latest localStorage
+    // Live preview uses localStorage (?preview=1), not published config.json
     saveConfig(config);
-    iframe.src = "index.html?t=" + Date.now();
+    iframe.src = "index.html?preview=1&t=" + Date.now();
   }
 
   // ========== HELPERS ==========

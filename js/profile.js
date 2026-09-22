@@ -1,9 +1,17 @@
 /**
  * Public Profile Renderer
+ * - Public visitors: load config.json (published)
+ * - Admin preview (?preview=1): use localStorage
  */
 (function () {
-  const config = getConfig();
+  const isPreview = /[?&]preview=1/.test(location.search);
 
+  async function boot() {
+    const config = isPreview ? getConfig() : await loadPublicConfig();
+    renderAll(config);
+  }
+
+  function renderAll(config) {
   // Apply SEO
   document.title = config.seo.title || "Profile";
   const metaDesc = document.querySelector('meta[name="description"]');
@@ -112,6 +120,7 @@
   if (config.effects.particles || config.effects.stars) {
     initParticles(config.effects);
   }
+  } // end renderAll
 
   // Helpers
   function escapeHtml(str) {
@@ -119,6 +128,8 @@
     d.textContent = str || "";
     return d.innerHTML;
   }
+
+  boot();
 
   function renderBackground(bg) {
     const media = document.getElementById("bg-media");

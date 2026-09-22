@@ -71,6 +71,7 @@
         </div>
         <div class="topbar-actions">
           <button class="btn btn-ghost btn-sm" id="preview-toggle-btn">Preview</button>
+          <button class="btn btn-ghost btn-sm" id="publish-top-btn">📤 Publish</button>
           <button class="btn btn-primary btn-sm" id="save-btn">💾 Save</button>
         </div>
       </header>
@@ -347,10 +348,25 @@
 
           <!-- EXPORT -->
           <section class="panel-section" id="panel-export">
+            <div class="card" style="border-color:rgba(124,92,255,0.4);">
+              <h3>🚀 Publish for Public</h3>
+              <p style="font-size:0.85rem;color:var(--admin-muted);margin-bottom:12px;line-height:1.55;">
+                دکمه زیر فایل <code>config.json</code> را دانلود می‌کند.
+                آن را در <strong>ریشه ریپو</strong> (کنار index.html) آپلود/جایگزین کن و Commit بزن.
+                بعد از چند ثانیه همه بازدیدکننده‌ها تنظیمات جدید را می‌بینند.
+              </p>
+              <button class="btn btn-primary" id="publish-btn">📤 دانلود config.json (Publish)</button>
+              <ol style="font-size:0.8rem;color:var(--admin-muted);margin:14px 0 0 18px;line-height:1.7;">
+                <li>این دکمه را بزن → فایل config.json دانلود می‌شود</li>
+                <li>در GitHub برو به ریپو → Add file / Upload files</li>
+                <li>config.json را در ریشه قرار بده (جایگزین نسخه قبلی)</li>
+                <li>Commit changes</li>
+              </ol>
+            </div>
             <div class="card">
-              <h3>Export Configuration</h3>
-              <p style="font-size:0.85rem;color:var(--admin-muted);margin-bottom:12px;">تمام تنظیمات را به صورت JSON دانلود کنید.</p>
-              <button class="btn btn-primary" id="export-btn">📥 Export JSON</button>
+              <h3>Export Backup</h3>
+              <p style="font-size:0.85rem;color:var(--admin-muted);margin-bottom:12px;">بکاپ با نام تاریخ‌دار (برای آرشیو شخصی).</p>
+              <button class="btn btn-ghost" id="export-btn">📥 Export JSON</button>
             </div>
             <div class="card">
               <h3>Import Configuration</h3>
@@ -368,7 +384,7 @@
             <button class="btn btn-ghost btn-sm" id="refresh-preview">↻</button>
           </div>
           <div class="preview-frame">
-            <iframe id="preview-iframe" src="index.html"></iframe>
+            <iframe id="preview-iframe" src="index.html?preview=1"></iframe>
           </div>
         </div>
       </div>
