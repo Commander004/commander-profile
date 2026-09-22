@@ -1,27 +1,27 @@
 {
   "profile": {
     "avatar": "https://avatars.githubusercontent.com/u/289800352?v=4",
-    "username": "Commander004",
-    "displayName": "Commander",
-    "bio": "Full-stack developer & digital craftsman.\nBuilding beautiful experiences.",
+    "username": "@commander04",
+    "displayName": "Commander04",
+    "bio": "Misham farari az marza..",
     "location": "Iran",
-    "status": "Online",
-    "pronouns": "",
+    "status": "Cooking..🦦",
+    "pronouns": "Cm04",
     "verified": true,
     "customBadge": "DEV",
     "avatarShape": "circle",
     "avatarSize": 120,
     "avatarBorder": true,
     "avatarGlow": true,
-    "avatarAnimation": "none"
+    "avatarAnimation": "pulse"
   },
   "background": {
-    "type": "default",
+    "type": "video",
     "solid": "#0a0a0f",
     "gradient": "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%)",
     "image": "",
-    "video": "",
-    "blur": 0,
+    "video": "https://raw.githubusercontent.com/Commander004/commander-profile/main/assets/video/Video.Guru_20260922-213025465.mp4",
+    "blur": 2,
     "brightness": 100,
     "contrast": 100,
     "opacity": 100,
@@ -39,10 +39,10 @@
     "style": "glass",
     "tracks": [
       {
-        "title": "Night Drive",
-        "artist": "Lo-Fi Beats",
-        "cover": "",
-        "url": ""
+        "title": "Bloody",
+        "artist": "kingsize",
+        "cover": "https://raw.githubusercontent.com/Commander004/commander-profile/main/assets/image/Album_1790100447230.png",
+        "url": "https://raw.githubusercontent.com/Commander004/commander-profile/main/assets/music/Commander%2004%20-%20Untitled%20-%201790096409109%202026-09-22%2020_30.m4a"
       }
     ]
   },
@@ -148,7 +148,7 @@
     "primary": "#7c5cff",
     "secondary": "#00d4ff",
     "accent": "#ff6b9d",
-    "background": "#0a0a0f",
+    "background": "#000000",
     "text": "#f0f0f5",
     "card": "rgba(255,255,255,0.06)",
     "border": "rgba(255,255,255,0.1)",
