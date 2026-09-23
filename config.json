@@ -1,14 +1,14 @@
 {
   "profile": {
     "avatar": "https://avatars.githubusercontent.com/u/289800352?v=4",
-    "username": "@commander04",
+    "username": "commander04",
     "displayName": "Commander04",
     "bio": "Misham farari az marza..",
     "location": "Iran",
-    "status": "Cooking..🦦",
-    "pronouns": "Cm04",
+    "status": "Cooking..",
+    "pronouns": "HE/HIM",
     "verified": true,
-    "customBadge": "DEV",
+    "customBadge": "Creator",
     "avatarShape": "circle",
     "avatarSize": 120,
     "avatarBorder": true,
@@ -49,7 +49,7 @@
   "texts": [
     {
       "id": "t1",
-      "text": "Welcome to my digital space",
+      "text": "میشم فراری از مرزا🌙",
       "font": "Inter",
       "fontSize": 18,
       "fontWeight": 500,
@@ -66,7 +66,7 @@
       "borderRadius": 0,
       "padding": 8,
       "margin": 4,
-      "animation": "fade"
+      "animation": "glow"
     }
   ],
   "social": [
@@ -82,7 +82,7 @@
     {
       "id": "s2",
       "title": "Telegram",
-      "url": "https://t.me/",
+      "url": "https://t.me/commander04A",
       "icon": "telegram",
       "color": "#29b6f6",
       "bg": "rgba(41,182,246,0.15)",
@@ -145,14 +145,14 @@
   ],
   "theme": {
     "preset": "dark",
-    "primary": "#7c5cff",
+    "primary": "#ffffff",
     "secondary": "#00d4ff",
-    "accent": "#ff6b9d",
+    "accent": "#000000",
     "background": "#000000",
     "text": "#f0f0f5",
     "card": "rgba(255,255,255,0.06)",
     "border": "rgba(255,255,255,0.1)",
-    "glow": "#7c5cff",
+    "glow": "#ff0000",
     "button": "#7c5cff",
     "borderRadius": 16,
     "blur": 20,
@@ -161,8 +161,8 @@
   },
   "effects": {
     "cursor": false,
-    "particles": false,
-    "stars": false,
+    "particles": true,
+    "stars": true,
     "snow": false,
     "glow": true,
     "clickEffect": false,
@@ -170,8 +170,8 @@
     "reducedMotion": false
   },
   "seo": {
-    "title": "Commander | Personal Profile",
-    "description": "Personal digital space of Commander004",
+    "title": "Commander on top",
+    "description": "Seda miyad¿",
     "keywords": "profile, developer, commander",
     "ogTitle": "Commander",
     "ogDescription": "My digital presence",
@@ -183,6 +183,6 @@
     "showStatus": true,
     "showLocation": true,
     "showBadges": true,
-    "performanceMode": false
+    "performanceMode": true
   }
 }
